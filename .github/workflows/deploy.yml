@@ -30,18 +30,27 @@ jobs:
     
     - name: Create deployment package
       run: |
-        mkdir -p _site
-        cp -r static/* _site/
-        
+        mkdir -p _site/static
+        rsync -av static/ _site/static/
+
+        # Promote entry pages to the root so GitHub Pages serves them
+        cp _site/static/index.html _site/index.html
+        if [ -f _site/static/admin.html ]; then
+          cp _site/static/admin.html _site/admin.html
+        fi
+        if [ -f _site/static/recruiters.html ]; then
+          cp _site/static/recruiters.html _site/recruiters.html
+        fi
+
         # Ensure .nojekyll exists for GitHub Pages
         touch _site/.nojekyll
-        
-        # Verify index.html exists
+
+        # Verify index.html exists after promotion
         if [ ! -f _site/index.html ]; then
-          echo "ERROR: index.html not found in static directory"
+          echo "ERROR: index.html not found in deployment package"
           exit 1
         fi
-        
+
         echo "✅ Deployment package created successfully"
         ls -la _site/
     
