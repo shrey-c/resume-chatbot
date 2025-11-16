@@ -183,6 +183,11 @@ body[data-theme="dark"] .suggestion-chip:hover {
 	border-color: transparent;
 }
 
+body[data-theme="dark"] .experience-date,
+body[data-theme="dark"] .experience-date * {
+	color: #fff !important;
+}
+
 /* ================================
    GLOBAL RESET & BASE STYLES
    ================================ */
