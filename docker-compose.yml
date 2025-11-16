@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama2
+      - MAX_REQUESTS_PER_MINUTE=10
+      - MAX_MESSAGE_LENGTH=500
+      - DEBUG=False
+    depends_on:
+      - ollama
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - app-network
+    restart: unless-stopped
+    # Note: After starting, run: docker exec -it <container_name> ollama pull llama2
+
+volumes:
+  ollama-data:
+
+networks:
+  app-network:
+    driver: bridge

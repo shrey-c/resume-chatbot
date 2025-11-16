@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Resume Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --success: #10b981;
+            --error: #ef4444;
+            --background: #f9fafb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .file-upload.dragging {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .file-text {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .file-name {
+            margin-top: 12px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .btn-logout:hover {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .resume-info {
+            background: var(--background);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+
+        .resume-info h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .resume-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .resume-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .resume-info-label {
+            color: var(--text-muted);
+        }
+
+        .resume-info-value {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login View -->
+        <div id="loginView" class="card">
+            <h1>Admin Portal</h1>
+            <p class="subtitle">Sign in to upload and update your resume</p>
+
+            <div id="loginError" class="alert alert-error hidden"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn" id="loginBtn">
+                    Sign In
+                </button>
+            </form>
+
+            <a href="/" class="back-link">← Back to Resume</a>
+        </div>
+
+        <!-- Upload View -->
+        <div id="uploadView" class="card hidden">
+            <button type="button" class="btn btn-logout" id="logoutBtn">
+                Sign Out
+            </button>
+
+            <h1>Upload Resume</h1>
+            <p class="subtitle">Upload a PDF file to update your resume information</p>
+
+            <div id="uploadError" class="alert alert-error hidden"></div>
+            <div id="uploadSuccess" class="alert alert-success hidden"></div>
+
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label class="file-upload" id="fileUploadArea">
+                        <input type="file" id="resumeFile" accept=".pdf" required>
+                        <div class="file-icon">📄</div>
+                        <div class="file-text">
+                            <strong>Click to upload</strong> or drag and drop<br>
+                            <span style="font-size: 12px;">PDF files only</span>
+                        </div>
+                        <div id="fileName" class="file-name hidden"></div>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn" id="uploadBtn">
+                    Upload and Process
+                </button>
+            </form>
+
+            <div id="resumeInfo" class="resume-info hidden">
+                <h3>Processed Resume Information</h3>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Name:</span>
+                    <span class="resume-info-value" id="infoName">-</span>
+                </div>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Email:</span>
+                    <span class="resume-info-value" id="infoEmail">-</span>
+                </div>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Experience Entries:</span>
+                    <span class="resume-info-value" id="infoExp">-</span>
+                </div>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Education Entries:</span>
+                    <span class="resume-info-value" id="infoEdu">-</span>
+                </div>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Skills:</span>
+                    <span class="resume-info-value" id="infoSkills">-</span>
+                </div>
+                <div class="resume-info-item">
+                    <span class="resume-info-label">Projects:</span>
+                    <span class="resume-info-value" id="infoProjects">-</span>
+                </div>
+            </div>
+
+            <a href="/" class="back-link">← Back to Resume</a>
+        </div>
+    </div>
+
+    <script>
+        // Token management
+        const TOKEN_KEY = 'admin_token';
+
+        function setToken(token) {
+            localStorage.setItem(TOKEN_KEY, token);
+        }
+
+        function getToken() {
+            return localStorage.getItem(TOKEN_KEY);
+        }
+
+        function removeToken() {
+            localStorage.removeItem(TOKEN_KEY);
+        }
+
+        // Show/hide alerts
+        function showError(viewId, message) {
+            const errorEl = document.getElementById(`${viewId}Error`);
+            errorEl.textContent = message;
+            errorEl.classList.remove('hidden');
+            setTimeout(() => errorEl.classList.add('hidden'), 5000);
+        }
+
+        function showSuccess(message) {
+            const successEl = document.getElementById('uploadSuccess');
+            successEl.textContent = message;
+            successEl.classList.remove('hidden');
+            setTimeout(() => successEl.classList.add('hidden'), 5000);
+        }
+
+        function hideErrors() {
+            document.querySelectorAll('.alert').forEach(el => el.classList.add('hidden'));
+        }
+
+        // Check authentication on load
+        async function checkAuth() {
+            const token = getToken();
+            if (!token) {
+                showLoginView();
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/admin/verify', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    showUploadView();
+                } else {
+                    removeToken();
+                    showLoginView();
+                }
+            } catch (error) {
+                removeToken();
+                showLoginView();
+            }
+        }
+
+        function showLoginView() {
+            document.getElementById('loginView').classList.remove('hidden');
+            document.getElementById('uploadView').classList.add('hidden');
+        }
+
+        function showUploadView() {
+            document.getElementById('loginView').classList.add('hidden');
+            document.getElementById('uploadView').classList.remove('hidden');
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideErrors();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="loading"></span>Signing in...';
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setToken(data.access_token);
+                    showUploadView();
+                    document.getElementById('loginForm').reset();
+                } else {
+                    showError('login', data.detail || 'Invalid credentials');
+                }
+            } catch (error) {
+                showError('login', 'Failed to connect to server');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+
+        // Logout handler
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            removeToken();
+            showLoginView();
+            document.getElementById('resumeInfo').classList.add('hidden');
+        });
+
+        // File upload handling
+        const fileInput = document.getElementById('resumeFile');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileNameDisplay = document.getElementById('fileName');
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileNameDisplay.textContent = `Selected: ${file.name}`;
+                fileNameDisplay.classList.remove('hidden');
+            } else {
+                fileNameDisplay.classList.add('hidden');
+            }
+        });
+
+        // Drag and drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileUploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileUploadArea.addEventListener(eventName, () => {
+                fileUploadArea.classList.add('dragging');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileUploadArea.addEventListener(eventName, () => {
+                fileUploadArea.classList.remove('dragging');
+            });
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                fileInput.files = files;
+                fileNameDisplay.textContent = `Selected: ${files[0].name}`;
+                fileNameDisplay.classList.remove('hidden');
+            }
+        });
+
+        // Upload form handler
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideErrors();
+
+            const file = fileInput.files[0];
+            if (!file) {
+                showError('upload', 'Please select a PDF file');
+                return;
+            }
+
+            if (file.type !== 'application/pdf') {
+                showError('upload', 'Only PDF files are allowed');
+                return;
+            }
+
+            const uploadBtn = document.getElementById('uploadBtn');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span class="loading"></span>Processing...';
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/api/admin/upload-resume', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess(data.message);
+                    
+                    // Display resume info
+                    if (data.resume) {
+                        document.getElementById('infoName').textContent = data.resume.name;
+                        document.getElementById('infoEmail').textContent = data.resume.email;
+                        document.getElementById('infoExp').textContent = data.resume.experience_count;
+                        document.getElementById('infoEdu').textContent = data.resume.education_count;
+                        document.getElementById('infoSkills').textContent = data.resume.skills_count;
+                        document.getElementById('infoProjects').textContent = data.resume.projects_count;
+                        document.getElementById('resumeInfo').classList.remove('hidden');
+                    }
+
+                    // Reset form
+                    document.getElementById('uploadForm').reset();
+                    fileNameDisplay.classList.add('hidden');
+                } else {
+                    showError('upload', data.detail || 'Upload failed');
+                }
+            } catch (error) {
+                showError('upload', 'Failed to upload file. Please try again.');
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = 'Upload and Process';
+            }
+        });
+
+        // Check auth on page load
+        checkAuth();
+    </script>
+</body>
+</html>

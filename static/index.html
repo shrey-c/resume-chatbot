@@ -1,0 +1,788 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Shreyansh Chheda - AI/ML Engineer | GenAI Specialist</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/template-assets/css/main.css" />
+		<style>
+			/* Smooth scrolling for better UX */
+			html {
+				scroll-behavior: smooth;
+			}
+			
+			/* Sticky navigation for better usability */
+			#header {
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+			}
+			
+			/* Better section visibility */
+			section {
+				scroll-margin-top: 2em;
+			}
+			
+			/* Active navigation highlight */
+			#nav a.active {
+				background: #49bf9d;
+				color: #1b1f22 !important;
+			}
+			
+			/* Smooth transitions */
+			* {
+				transition: all 0.3s ease;
+			}
+			
+			/* Loading state for chatbot */
+			.loading-dots {
+				display: inline-block;
+			}
+			
+			.loading-dots span {
+				animation: blink 1.4s infinite;
+				animation-fill-mode: both;
+			}
+			
+			.loading-dots span:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+			
+			.loading-dots span:nth-child(3) {
+				animation-delay: 0.4s;
+			}
+			
+			@keyframes blink {
+				0%, 80%, 100% { opacity: 0; }
+				40% { opacity: 1; }
+			}
+			
+			/* Better hover effects */
+			.button:hover, a.button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(73, 191, 157, 0.3);
+			}
+			
+			/* Chatbot Styles */
+			#chatbot-section {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				padding: 3em 0;
+				margin-top: 2em;
+			}
+			
+			#chatbot-container {
+				background: white;
+				border-radius: 15px;
+				box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+				overflow: hidden;
+				max-width: 800px;
+				margin: 0 auto;
+			}
+			
+			#chatbot-header {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				padding: 1.5em;
+				text-align: center;
+			}
+			
+			#chatbot-header h3 {
+				margin: 0;
+				font-size: 1.5em;
+				color: white;
+			}
+			
+			#chatbot-header p {
+				margin: 0.5em 0 0 0;
+				opacity: 0.9;
+				color: white;
+			}
+			
+			#chat-messages {
+				height: 400px;
+				overflow-y: auto;
+				padding: 1.5em;
+				background: #f8f9fa;
+			}
+			
+			.message {
+				margin-bottom: 1em;
+				display: flex;
+				gap: 0.8em;
+				animation: fadeIn 0.3s ease-in;
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(10px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			
+			.message.user {
+				flex-direction: row-reverse;
+			}
+			
+			.message-avatar {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: bold;
+				flex-shrink: 0;
+			}
+			
+			.message.user .message-avatar {
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+			}
+			
+			.message-content {
+				background: white;
+				padding: 1em 1.2em;
+				border-radius: 15px;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+				max-width: 70%;
+			}
+			
+			.message.user .message-content {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+			}
+			
+			#chat-input-container {
+				padding: 1.5em;
+				background: white;
+				border-top: 2px solid #eee;
+			}
+			
+			#chat-input-form {
+				display: flex;
+				gap: 0.8em;
+			}
+			
+			#user-input {
+				flex: 1;
+				padding: 0.8em 1.2em;
+				border: 2px solid #e0e0e0;
+				border-radius: 25px;
+				font-size: 1em;
+				transition: all 0.3s ease;
+			}
+			
+			#user-input:focus {
+				outline: none;
+				border-color: #667eea;
+				box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+			}
+			
+			#send-button {
+				padding: 0.8em 2em;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border: none;
+				border-radius: 25px;
+				cursor: pointer;
+				font-weight: bold;
+				transition: all 0.3s ease;
+			}
+			
+			#send-button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+			}
+			
+			#send-button:disabled {
+				opacity: 0.6;
+				cursor: not-allowed;
+			}
+			
+			.typing-indicator {
+				display: flex;
+				gap: 0.3em;
+				padding: 1em;
+			}
+			
+			.typing-indicator span {
+				width: 8px;
+				height: 8px;
+				background: #667eea;
+				border-radius: 50%;
+				animation: typing 1.4s infinite;
+			}
+			
+			.typing-indicator span:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+			
+			.typing-indicator span:nth-child(3) {
+				animation-delay: 0.4s;
+			}
+			
+			@keyframes typing {
+				0%, 60%, 100% { transform: translateY(0); }
+				30% { transform: translateY(-10px); }
+			}
+			
+			.suggestion-chips {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5em;
+				margin-top: 1em;
+			}
+			
+			.suggestion-chip {
+				padding: 0.5em 1em;
+				background: #f0f0f0;
+				border: 1px solid #ddd;
+				border-radius: 20px;
+				cursor: pointer;
+				font-size: 0.9em;
+				transition: all 0.2s ease;
+			}
+			
+			.suggestion-chip:hover {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border-color: transparent;
+			}
+			
+			/* Mobile Responsive */
+			@media screen and (max-width: 736px) {
+				#chat-messages {
+					height: 300px;
+				}
+				
+				.message-content {
+					max-width: 85%;
+				}
+				
+				#send-button {
+					padding: 0.8em 1.2em;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- STATIC RESUME DATA FOR HTML PARSING -->
+		<!-- This hidden section provides structured data for the AI chatbot to parse -->
+		<div id="resume-static-data" style="display: none;">
+			<!-- Content loaded from resume_static_data.html via JavaScript on page load -->
+			<!-- This ensures chatbot answers from actual HTML content -->
+		</div>
+		<script>
+			// Load static resume data for HTML parser
+			fetch('/static/resume_static_data.html')
+				.then(response => response.text())
+				.then(html => {
+					document.getElementById('resume-static-data').innerHTML = html;
+				});
+		</script>
+		<!-- END STATIC DATA LOADING -->
+
+		<!-- Header -->
+		<section id="header">
+			<header>
+				<span class="image avatar"><img src="/static/images/shrey.jpg" alt="Shreyansh Chheda" style="filter: brightness(0.7) contrast(0.9) opacity(0.85); transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1) contrast(1) opacity(1)'" onmouseout="this.style.filter='brightness(0.7) contrast(0.9) opacity(0.85)'" /></span>
+				<h1 id="logo"><a href="#">Shreyansh Chheda</a></h1>
+				<p>AI/ML Engineer | GenAI Specialist<br />
+				Full-Stack Developer</p>
+			</header>
+			<nav id="nav">
+				<ul>
+					<li><a href="#about" class="active">About</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#projects">Projects</a></li>
+					<li><a href="#chatbot">AI Chatbot</a></li>
+					<li><a href="/static/recruiters.html" style="background: linear-gradient(135deg, #49bf9d 0%, #5fd4ac 100%); color: #1b1f22 !important; font-weight: bold; padding: 0.5em 1em; border-radius: 4px; box-shadow: 0 2px 8px rgba(73, 191, 157, 0.3);">🎯 Recruiters: Why Hire Me?</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+			<footer>
+				<ul class="icons">
+					<li><a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+					<li><a href="https://github.com/shrey-c" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="mailto:shreyansh.chheda@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+			</footer>
+		</section>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- About -->
+				<section id="about">
+					<div class="image main" data-position="center">
+						<img src="/static/template-assets/images/banner.jpg" alt="" />
+					</div>
+					<div class="container">
+						<header class="major">
+							<h2>About Me</h2>
+							<p>Driving Innovation Through AI/ML and Full-Stack Solutions</p>
+						</header>
+						<p id="summary">Loading...</p>
+					</div>
+				</section>
+
+				<!-- Experience -->
+				<section id="experience">
+					<div class="container">
+						<h3>Professional Experience</h3>
+						<p>4+ years of experience building AI/ML solutions at Telstra</p>
+						<div id="experience-list">
+							<p>Loading experience...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Education -->
+				<section id="education">
+					<div class="container">
+						<h3>Education</h3>
+						<p>Strong academic foundation in Computer Science</p>
+						<div id="education-list">
+							<p>Loading education...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Skills -->
+				<section id="skills">
+					<div class="container">
+						<h3>Technical Skills</h3>
+						<p>Expertise across AI/ML, Cloud, and Full-Stack Development</p>
+						<div id="skills-list">
+							<p>Loading skills...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Projects -->
+				<section id="projects">
+					<div class="container">
+						<h3>Featured Projects</h3>
+						<p>Delivering business impact through innovative AI solutions</p>
+						<div class="features" id="projects-list">
+							<p>Loading projects...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Certifications -->
+				<section id="certifications">
+					<div class="container">
+						<h3>Certifications</h3>
+						<p>Continuous learning and professional development</p>
+						<div id="certifications-list">
+							<p>Loading certifications...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Awards & Recognition -->
+				<section id="awards">
+					<div class="container">
+						<h3>Awards & Recognition</h3>
+						<p>Acknowledged excellence and outstanding contributions</p>
+						<div id="awards-list">
+							<p>Loading awards...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Interests & Hobbies -->
+				<section id="interests">
+					<div class="container">
+						<h3>Beyond Work</h3>
+						<p>Passions and interests that keep me balanced</p>
+						<div class="features" id="interests-list">
+							<p>Loading interests...</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- AI Chatbot -->
+				<section id="chatbot">
+					<div id="chatbot-section">
+						<div class="container">
+							<div id="chatbot-container">
+								<div id="chatbot-header">
+									<h3>🤖 Ask Me Anything!</h3>
+									<p>Chat with my AI-powered assistant to learn more about my experience</p>
+								</div>
+								
+								<div id="chat-messages">
+									<div class="message bot">
+										<div class="message-avatar">🤖</div>
+										<div class="message-content">
+											<p>Hi! I'm Shreyansh's AI assistant. I can answer questions about his experience, projects, and skills. What would you like to know?</p>
+											<div class="suggestion-chips">
+												<span class="suggestion-chip" onclick="sendSuggestion('Tell me about your GenAI experience')">GenAI Experience</span>
+												<span class="suggestion-chip" onclick="sendSuggestion('What is AskTelstra?')">AskTelstra Project</span>
+												<span class="suggestion-chip" onclick="sendSuggestion('What awards have you received?')">Awards</span>
+												<span class="suggestion-chip" onclick="sendSuggestion('What technologies do you use?')">Tech Stack</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div id="chat-input-container">
+									<form id="chat-input-form">
+										<input 
+											type="text" 
+											id="user-input" 
+											placeholder="Ask about experience, projects, skills..." 
+											autocomplete="off"
+											required
+										/>
+										<button type="submit" id="send-button">Send</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Contact -->
+				<section id="contact">
+					<div class="container">
+						<h3>Get In Touch</h3>
+						<p>Let's connect! I'm always open to discussing new opportunities and collaborations.</p>
+						<ul class="feature-icons">
+							<li class="icon solid fa-envelope">
+								<strong>Email:</strong> <a href="mailto:shreyansh.chheda@gmail.com">shreyansh.chheda@gmail.com</a>
+							</li>
+							<li class="icon solid fa-phone">
+								<strong>Phone:</strong> <a href="tel:+919820477990">+91 9820477990</a>
+							</li>
+							<li class="icon brands fa-linkedin">
+								<strong>LinkedIn:</strong> <a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank">shreyansh-chheda</a>
+							</li>
+							<li class="icon brands fa-github">
+								<strong>GitHub:</strong> <a href="https://github.com/shrey-c" target="_blank">github.com/shrey-c</a>
+							</li>
+							<li class="icon solid fa-map-marker-alt">
+								<strong>Location:</strong> Pune, Maharashtra, India
+							</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+			<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<ul class="copyright">
+						<li>&copy; 2025 Shreyansh Chheda. All rights reserved.</li>
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="/static/template-assets/js/jquery.min.js"></script>
+		<script src="/static/template-assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/template-assets/js/jquery.scrolly.min.js"></script>
+		<script src="/static/template-assets/js/browser.min.js"></script>
+		<script src="/static/template-assets/js/breakpoints.min.js"></script>
+		<script src="/static/template-assets/js/util.js"></script>
+		<script src="/static/template-assets/js/main.js"></script>
+		
+		<script>
+			// Load Resume Data
+			async function loadResumeData() {
+				try {
+					const response = await fetch('/api/resume');
+					const data = await response.json();
+					
+					// Update Summary
+					document.getElementById('summary').textContent = data.summary;
+					
+					// Update Experience
+					const experienceList = document.getElementById('experience-list');
+					experienceList.innerHTML = data.experience.map(exp => `
+						<article style="margin-bottom: 2em; padding: 1.5em; background: #f8f9fa; border-radius: 10px;">
+							<h4 style="color: #667eea; margin-bottom: 0.5em;">
+								${exp.position} - ${exp.company}
+							</h4>
+							<p style="color: #666; margin-bottom: 0.5em;">
+								<strong>${exp.start_date} - ${exp.end_date || 'Present'}</strong> | ${exp.location}
+							</p>
+							<p style="margin-bottom: 1em;">${exp.description}</p>
+							${exp.achievements && exp.achievements.length > 0 ? `
+								<ul style="margin-left: 1.5em;">
+									${exp.achievements.map(a => `<li>${a}</li>`).join('')}
+								</ul>
+							` : ''}
+						</article>
+					`).join('');
+					
+					// Update Skills
+					const skillsList = document.getElementById('skills-list');
+					const skillsByCategory = {};
+					data.skills.forEach(skill => {
+						if (!skillsByCategory[skill.category]) {
+							skillsByCategory[skill.category] = [];
+						}
+						skillsByCategory[skill.category].push(skill.name);
+					});
+					
+					skillsList.innerHTML = '<ul class="feature-icons">' + 
+						Object.entries(skillsByCategory).map(([category, skills]) => `
+							<li class="icon solid fa-code">
+								<strong>${category}:</strong><br/>
+								${skills.join(', ')}
+							</li>
+						`).join('') + 
+					'</ul>';
+					
+					// Update Projects
+					const projectsList = document.getElementById('projects-list');
+					projectsList.innerHTML = data.projects.map(proj => `
+						<article>
+							<div class="inner">
+								<h4>${proj.name}</h4>
+								<p>${proj.description}</p>
+								<p><strong>Technologies:</strong> ${proj.technologies.join(', ')}</p>
+								${proj.highlights && proj.highlights.length > 0 ? `
+									<ul>
+										${proj.highlights.map(h => `<li>${h}</li>`).join('')}
+									</ul>
+								` : ''}
+							</div>
+						</article>
+					`).join('');
+					
+					// Update Education
+					const educationList = document.getElementById('education-list');
+					educationList.innerHTML = data.education.map(edu => `
+						<article style="margin-bottom: 2em; padding: 1.5em; background: #f8f9fa; border-radius: 10px;">
+							<h4 style="color: #667eea; margin-bottom: 0.5em;">
+								${edu.degree} in ${edu.field_of_study}
+							</h4>
+							<p style="color: #666; margin-bottom: 0.5em;">
+								<strong>${edu.institution}</strong> | ${edu.location}
+							</p>
+							<p style="color: #666;">
+								${edu.start_date} - ${edu.end_date || 'Present'}
+							</p>
+							${edu.gpa ? `<p><strong>GPA:</strong> ${edu.gpa}</p>` : ''}
+							${edu.honors && edu.honors.length > 0 ? `
+								<p><strong>Honors:</strong> ${edu.honors.join(', ')}</p>
+							` : ''}
+						</article>
+					`).join('');
+					
+					// Update Certifications
+					const certificationsList = document.getElementById('certifications-list');
+					certificationsList.innerHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em;">' +
+						data.certifications.map(cert => `
+							<article style="padding: 1.5em; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+								<h4 style="color: #667eea; margin-bottom: 0.5em; font-size: 1em;">
+									${cert.name}
+								</h4>
+								<p style="color: #666; margin-bottom: 0.5em;">
+									<strong>${cert.issuer}</strong> | ${cert.issue_date}
+								</p>
+								${cert.credential_id ? `
+									<p style="color: #888; font-size: 0.9em; margin-bottom: 0.5em;">
+										Credential ID: ${cert.credential_id}
+									</p>
+								` : ''}
+								${cert.skills && cert.skills.length > 0 ? `
+									<p style="color: #555; font-size: 0.9em;">
+										<strong>Skills:</strong> ${cert.skills.join(', ')}
+									</p>
+								` : ''}
+							</article>
+						`).join('') +
+					'</div>';
+					
+					// Update Awards
+					const awardsList = document.getElementById('awards-list');
+					awardsList.innerHTML = data.awards.map(award => `
+						<article style="margin-bottom: 1.5em; padding: 1.5em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+							<h4 style="color: white; margin-bottom: 0.5em;">
+								🏆 ${award.title}
+							</h4>
+							<p style="margin-bottom: 0.5em; opacity: 0.9;">
+								<strong>${award.issuer}</strong> | ${award.date}
+							</p>
+							${award.description ? `
+								<p style="opacity: 0.95;">${award.description}</p>
+							` : ''}
+						</article>
+					`).join('');
+					
+					// Update Interests
+					const interestsList = document.getElementById('interests-list');
+					interestsList.innerHTML = data.interests.map(interest => `
+						<article>
+							<div class="inner">
+								<h4>${interest.name}</h4>
+								${interest.description ? `<p>${interest.description}</p>` : ''}
+							</div>
+						</article>
+					`).join('');
+					
+				} catch (error) {
+					console.error('Error loading resume data:', error);
+				}
+			}
+			
+			// Chatbot Functionality
+			const chatMessages = document.getElementById('chat-messages');
+			const chatForm = document.getElementById('chat-input-form');
+			const userInput = document.getElementById('user-input');
+			const sendButton = document.getElementById('send-button');
+			
+			function addMessage(content, isUser = false) {
+				const messageDiv = document.createElement('div');
+				messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+				messageDiv.innerHTML = `
+					<div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
+					<div class="message-content">
+						<p>${content}</p>
+					</div>
+				`;
+				chatMessages.appendChild(messageDiv);
+				chatMessages.scrollTop = chatMessages.scrollHeight;
+			}
+			
+			function showTypingIndicator() {
+				const typingDiv = document.createElement('div');
+				typingDiv.className = 'message bot typing';
+				typingDiv.id = 'typing-indicator';
+				typingDiv.innerHTML = `
+					<div class="message-avatar">🤖</div>
+					<div class="message-content">
+						<div class="loading-dots">
+							<span>●</span>
+							<span>●</span>
+							<span>●</span>
+						</div>
+						<p style="font-size: 0.8em; margin-top: 0.5em; opacity: 0.7;">AI is thinking...</p>
+					</div>
+				`;
+				chatMessages.appendChild(typingDiv);
+				chatMessages.scrollTop = chatMessages.scrollHeight;
+				return typingDiv;
+			}
+			
+			async function sendMessage(message) {
+				if (!message.trim()) return;
+				
+				// Add user message
+				addMessage(message, true);
+				userInput.value = '';
+				sendButton.disabled = true;
+				sendButton.textContent = 'Sending...';
+				
+				// Show typing indicator
+				const typingIndicator = showTypingIndicator();
+				
+				try {
+					const response = await fetch('/api/chat', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ message })
+					});
+					
+					const data = await response.json();
+					
+					// Remove typing indicator
+					typingIndicator.remove();
+					
+					// Add bot response with fade-in effect
+					addMessage(data.response);
+					
+				} catch (error) {
+					typingIndicator.remove();
+					addMessage('⚠️ Sorry, I encountered an error. Please try again or contact me directly.');
+					console.error('Chat error:', error);
+				} finally {
+					sendButton.disabled = false;
+					sendButton.textContent = 'Send';
+					userInput.focus();
+				}
+			}
+			
+			function sendSuggestion(text) {
+				userInput.value = text;
+				sendMessage(text);
+			}
+			
+			chatForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				sendMessage(userInput.value);
+			});
+			
+			// Active navigation highlighting on scroll
+			const sections = document.querySelectorAll('section[id]');
+			const navLinks = document.querySelectorAll('#nav a');
+			
+			window.addEventListener('scroll', () => {
+				let current = '';
+				
+				sections.forEach(section => {
+					const sectionTop = section.offsetTop;
+					const sectionHeight = section.clientHeight;
+					if (window.pageYOffset >= sectionTop - 200) {
+						current = section.getAttribute('id');
+					}
+				});
+				
+				navLinks.forEach(link => {
+					link.classList.remove('active');
+					if (link.getAttribute('href') === `#${current}`) {
+						link.classList.add('active');
+					}
+				});
+			});
+			
+			// Smooth scroll to top button (optional enhancement)
+			let scrollTopBtn = document.createElement('button');
+			scrollTopBtn.innerHTML = '↑';
+			scrollTopBtn.style.cssText = `
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				width: 50px;
+				height: 50px;
+				background: #49bf9d;
+				color: #1b1f22;
+				border: none;
+				border-radius: 50%;
+				font-size: 24px;
+				cursor: pointer;
+				display: none;
+				z-index: 1000;
+				box-shadow: 0 4px 12px rgba(73, 191, 157, 0.4);
+			`;
+			scrollTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+			document.body.appendChild(scrollTopBtn);
+			
+			window.addEventListener('scroll', () => {
+				if (window.pageYOffset > 300) {
+					scrollTopBtn.style.display = 'block';
+				} else {
+					scrollTopBtn.style.display = 'none';
+				}
+			});
+			
+			// Load data on page load
+			window.addEventListener('load', loadResumeData);
+		</script>
+	</body>
+</html>
