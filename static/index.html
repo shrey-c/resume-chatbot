@@ -4,7 +4,7 @@
 		<title>Shreyansh Chheda - AI/ML Engineer | GenAI Specialist</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/static/template-assets/css/main.css" />
+		<link rel="stylesheet" href="template-assets/css/main.css" />
 		<style>
 			/* Smooth scrolling for better UX */
 			html {
@@ -285,7 +285,7 @@
 		<!-- Header -->
 		<section id="header">
 			<header>
-				<span class="image avatar"><img src="/static/images/shrey.jpg" alt="Shreyansh Chheda" style="filter: brightness(0.7) contrast(0.9) opacity(0.85); transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1) contrast(1) opacity(1)'" onmouseout="this.style.filter='brightness(0.7) contrast(0.9) opacity(0.85)'" /></span>
+				<span class="image avatar"><img src="images/shrey.jpg" alt="Shreyansh Chheda" style="filter: brightness(0.7) contrast(0.9) opacity(0.85); transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1) contrast(1) opacity(1)'" onmouseout="this.style.filter='brightness(0.7) contrast(0.9) opacity(0.85)'" /></span>
 				<h1 id="logo"><a href="#">Shreyansh Chheda</a></h1>
 				<p>AI/ML Engineer | GenAI Specialist<br />
 				Full-Stack Developer</p>
@@ -489,19 +489,24 @@
 		</div>
 
 		<!-- Scripts -->
-		<script src="/static/template-assets/js/jquery.min.js"></script>
-		<script src="/static/template-assets/js/jquery.scrollex.min.js"></script>
-		<script src="/static/template-assets/js/jquery.scrolly.min.js"></script>
-		<script src="/static/template-assets/js/browser.min.js"></script>
-		<script src="/static/template-assets/js/breakpoints.min.js"></script>
-		<script src="/static/template-assets/js/util.js"></script>
-		<script src="/static/template-assets/js/main.js"></script>
+		<script src="template-assets/js/jquery.min.js"></script>
+		<script src="template-assets/js/jquery.scrolly.min.js"></script>
+		<script src="template-assets/js/jquery.scrollex.min.js"></script>
+		<script src="template-assets/js/browser.min.js"></script>
+		<script src="template-assets/js/breakpoints.min.js"></script>
+		<script src="template-assets/js/util.js"></script>
+		<script src="template-assets/js/main.js"></script>
 		
 		<script>
 			// Load Resume Data
 			async function loadResumeData() {
 				try {
 					const response = await fetch('/api/resume');
+					
+					if (!response.ok) {
+						throw new Error('API not available');
+					}
+					
 					const data = await response.json();
 					
 					// Update Summary
@@ -636,6 +641,8 @@
 					
 				} catch (error) {
 					console.error('Error loading resume data:', error);
+					// If API fails (GitHub Pages), the static HTML content will be displayed
+					// No need to show error as content is already in HTML
 				}
 			}
 			
@@ -699,6 +706,10 @@
 						body: JSON.stringify({ message })
 					});
 					
+					if (!response.ok) {
+						throw new Error('API not available');
+					}
+					
 					const data = await response.json();
 					
 					// Remove typing indicator
@@ -709,7 +720,13 @@
 					
 				} catch (error) {
 					typingIndicator.remove();
-					addMessage('⚠️ Sorry, I encountered an error. Please try again or contact me directly.');
+					
+					// Check if running on GitHub Pages without backend
+					if (window.location.hostname.includes('github.io')) {
+						addMessage('💡 <strong>Chatbot requires backend server</strong><br><br>The AI chatbot needs the FastAPI backend to run. To experience it:<br><br>1️⃣ Clone the repository: <code>git clone https://github.com/shrey-c/resume-chatbot.git</code><br>2️⃣ Follow setup in README.md<br>3️⃣ Run locally with Ollama<br><br>📧 Or contact me directly at <a href="mailto:shreyansh.chheda@gmail.com">shreyansh.chheda@gmail.com</a>');
+					} else {
+						addMessage('⚠️ Sorry, I encountered an error. Please try again or contact me directly.');
+					}
 					console.error('Chat error:', error);
 				} finally {
 					sendButton.disabled = false;
