@@ -4,267 +4,10 @@
 		<title>Shreyansh Chheda - AI/ML Engineer | GenAI Specialist</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="template-assets/css/main.css" />
-		<style>
-			/* Smooth scrolling for better UX */
-			html {
-				scroll-behavior: smooth;
-			}
-			
-			/* Sticky navigation for better usability */
-			#header {
-				position: sticky;
-				top: 0;
-				z-index: 1000;
-			}
-			
-			/* Better section visibility */
-			section {
-				scroll-margin-top: 2em;
-			}
-			
-			/* Active navigation highlight */
-			#nav a.active {
-				background: #49bf9d;
-				color: #1b1f22 !important;
-			}
-			
-			/* Smooth transitions */
-			* {
-				transition: all 0.3s ease;
-			}
-			
-			/* Loading state for chatbot */
-			.loading-dots {
-				display: inline-block;
-			}
-			
-			.loading-dots span {
-				animation: blink 1.4s infinite;
-				animation-fill-mode: both;
-			}
-			
-			.loading-dots span:nth-child(2) {
-				animation-delay: 0.2s;
-			}
-			
-			.loading-dots span:nth-child(3) {
-				animation-delay: 0.4s;
-			}
-			
-			@keyframes blink {
-				0%, 80%, 100% { opacity: 0; }
-				40% { opacity: 1; }
-			}
-			
-			/* Better hover effects */
-			.button:hover, a.button:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 5px 15px rgba(73, 191, 157, 0.3);
-			}
-			
-			/* Chatbot Styles */
-			#chatbot-section {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				padding: 3em 0;
-				margin-top: 2em;
-			}
-			
-			#chatbot-container {
-				background: white;
-				border-radius: 15px;
-				box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-				overflow: hidden;
-				max-width: 800px;
-				margin: 0 auto;
-			}
-			
-			#chatbot-header {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				padding: 1.5em;
-				text-align: center;
-			}
-			
-			#chatbot-header h3 {
-				margin: 0;
-				font-size: 1.5em;
-				color: white;
-			}
-			
-			#chatbot-header p {
-				margin: 0.5em 0 0 0;
-				opacity: 0.9;
-				color: white;
-			}
-			
-			#chat-messages {
-				height: 400px;
-				overflow-y: auto;
-				padding: 1.5em;
-				background: #f8f9fa;
-			}
-			
-			.message {
-				margin-bottom: 1em;
-				display: flex;
-				gap: 0.8em;
-				animation: fadeIn 0.3s ease-in;
-			}
-			
-			@keyframes fadeIn {
-				from { opacity: 0; transform: translateY(10px); }
-				to { opacity: 1; transform: translateY(0); }
-			}
-			
-			.message.user {
-				flex-direction: row-reverse;
-			}
-			
-			.message-avatar {
-				width: 40px;
-				height: 40px;
-				border-radius: 50%;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-weight: bold;
-				flex-shrink: 0;
-			}
-			
-			.message.user .message-avatar {
-				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-			}
-			
-			.message-content {
-				background: white;
-				padding: 1em 1.2em;
-				border-radius: 15px;
-				box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-				max-width: 70%;
-			}
-			
-			.message.user .message-content {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-			}
-			
-			#chat-input-container {
-				padding: 1.5em;
-				background: white;
-				border-top: 2px solid #eee;
-			}
-			
-			#chat-input-form {
-				display: flex;
-				gap: 0.8em;
-			}
-			
-			#user-input {
-				flex: 1;
-				padding: 0.8em 1.2em;
-				border: 2px solid #e0e0e0;
-				border-radius: 25px;
-				font-size: 1em;
-				transition: all 0.3s ease;
-			}
-			
-			#user-input:focus {
-				outline: none;
-				border-color: #667eea;
-				box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-			}
-			
-			#send-button {
-				padding: 0.8em 2em;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				border: none;
-				border-radius: 25px;
-				cursor: pointer;
-				font-weight: bold;
-				transition: all 0.3s ease;
-			}
-			
-			#send-button:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-			}
-			
-			#send-button:disabled {
-				opacity: 0.6;
-				cursor: not-allowed;
-			}
-			
-			.typing-indicator {
-				display: flex;
-				gap: 0.3em;
-				padding: 1em;
-			}
-			
-			.typing-indicator span {
-				width: 8px;
-				height: 8px;
-				background: #667eea;
-				border-radius: 50%;
-				animation: typing 1.4s infinite;
-			}
-			
-			.typing-indicator span:nth-child(2) {
-				animation-delay: 0.2s;
-			}
-			
-			.typing-indicator span:nth-child(3) {
-				animation-delay: 0.4s;
-			}
-			
-			@keyframes typing {
-				0%, 60%, 100% { transform: translateY(0); }
-				30% { transform: translateY(-10px); }
-			}
-			
-			.suggestion-chips {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.5em;
-				margin-top: 1em;
-			}
-			
-			.suggestion-chip {
-				padding: 0.5em 1em;
-				background: #f0f0f0;
-				border: 1px solid #ddd;
-				border-radius: 20px;
-				cursor: pointer;
-				font-size: 0.9em;
-				transition: all 0.2s ease;
-			}
-			
-			.suggestion-chip:hover {
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-				color: white;
-				border-color: transparent;
-			}
-			
-			/* Mobile Responsive */
-			@media screen and (max-width: 736px) {
-				#chat-messages {
-					height: 300px;
-				}
-				
-				.message-content {
-					max-width: 85%;
-				}
-				
-				#send-button {
-					padding: 0.8em 1.2em;
-				}
-			}
-		</style>
+		<link rel="stylesheet" href="/static/template-assets/css/main.css" />
+		<link rel="stylesheet" href="/static/custom-styles.css" />
 	</head>
-	<body class="is-preload">
+	<body class="is-preload" data-theme="light">
 
 		<!-- STATIC RESUME DATA FOR HTML PARSING -->
 		<!-- This hidden section provides structured data for the AI chatbot to parse -->
@@ -282,33 +25,57 @@
 		</script>
 		<!-- END STATIC DATA LOADING -->
 
-		<!-- Header -->
-		<section id="header">
-			<header>
-				<span class="image avatar"><img src="images/shrey.jpg" alt="Shreyansh Chheda" style="filter: brightness(0.7) contrast(0.9) opacity(0.85); transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1) contrast(1) opacity(1)'" onmouseout="this.style.filter='brightness(0.7) contrast(0.9) opacity(0.85)'" /></span>
-				<h1 id="logo"><a href="#">Shreyansh Chheda</a></h1>
-				<p>AI/ML Engineer | GenAI Specialist<br />
-				Full-Stack Developer</p>
-			</header>
-			<nav id="nav">
-				<ul>
-					<li><a href="#about" class="active">About</a></li>
-					<li><a href="#experience">Experience</a></li>
-					<li><a href="#skills">Skills</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#chatbot">AI Chatbot</a></li>
-					<li><a href="recruiters.html" style="background: linear-gradient(135deg, #49bf9d 0%, #5fd4ac 100%); color: #1b1f22 !important; font-weight: bold; padding: 0.5em 1em; border-radius: 4px; box-shadow: 0 2px 8px rgba(73, 191, 157, 0.3);">🎯 Recruiters: Why Hire Me?</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</nav>
-			<footer>
-				<ul class="icons">
-					<li><a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					<li><a href="https://github.com/shrey-c" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					<li><a href="mailto:shreyansh.chheda@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-				</ul>
-			</footer>
-		</section>
+	<!-- Header -->
+	<section id="header">
+		<div class="header-primary">
+			<div class="header-logo">
+				<span class="image avatar"><img src="/static/images/shrey.jpg" alt="Shreyansh Chheda" style="filter: brightness(0.7) contrast(0.9) opacity(0.85); transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1) contrast(1) opacity(1)'" onmouseout="this.style.filter='brightness(0.7) contrast(0.9) opacity(0.85)'" /></span>
+				<h1><a href="#">Shreyansh Chheda</a></h1>
+			</div>
+
+			<div class="header-actions">
+				<button class="header-menu-toggle" aria-expanded="false" aria-controls="section-menu">
+					<span class="sr-only">Toggle section navigation</span>
+					<span class="menu-icon" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+					<span class="menu-label">Sections</span>
+				</button>
+
+				<button class="theme-toggle" aria-pressed="false" aria-label="Toggle color theme">
+					<span class="theme-toggle-inner">
+						<span class="theme-icon" aria-hidden="true">🌙</span>
+						<span class="theme-label">Dark</span>
+					</span>
+					<span class="theme-toggle-switch" aria-hidden="true">
+						<span class="theme-toggle-knob"></span>
+					</span>
+				</button>
+
+				<div class="header-social">
+					<a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank" class="icon brands fa-linkedin" aria-label="LinkedIn"></a>
+					<a href="https://github.com/shrey-c" target="_blank" class="icon brands fa-github" aria-label="GitHub"></a>
+					<a href="mailto:shreyansh.chheda@gmail.com" class="icon solid fa-envelope" aria-label="Email"></a>
+				</div>
+			</div>
+		</div>
+
+		<nav class="section-nav" id="section-menu" aria-label="Section navigation" aria-hidden="true">
+			<ul>
+				<li><a href="#about" data-section="about" class="active">About</a></li>
+				<li><a href="#experience" data-section="experience">Experience</a></li>
+				<li><a href="#education" data-section="education">Education</a></li>
+				<li><a href="#skills" data-section="skills">Skills</a></li>
+				<li><a href="#projects" data-section="projects">Projects</a></li>
+				<li><a href="#certifications" data-section="certifications">Certifications</a></li>
+				<li><a href="#awards" data-section="awards">Awards</a></li>
+				<li><a href="#chatbot" data-section="chatbot">AI Chatbot</a></li>
+				<li><a href="#contact" data-section="contact">Contact</a></li>
+			</ul>
+		</nav>
+	</section>
 
 		<!-- Wrapper -->
 		<div id="wrapper">
@@ -323,7 +90,9 @@
 							<h2>About Me</h2>
 							<p>Driving Innovation Through AI/ML and Full-Stack Solutions</p>
 						</header>
-						<p id="summary">Loading...</p>
+						<div class="summary-block">
+							<p id="summary" class="summary-text">AI/ML Engineer specializing in full-stack development, data science and AI/ML. Proven ability to build end-to-end machine learning solutions and drive business impact—such as saving 3M AUD annually through automation and enhancing customer experience via AskTelstra GenAI chatbot. Expert in Python, AI, Java, and cloud technologies, with a track record of innovation, leadership, and scalable software delivery.</p>
+						</div>
 					</div>
 				</section>
 
@@ -365,7 +134,7 @@
 					<div class="container">
 						<h3>Featured Projects</h3>
 						<p>Delivering business impact through innovative AI solutions</p>
-						<div class="features" id="projects-list">
+						<div class="projects-wrapper" id="projects-list">
 							<p>Loading projects...</p>
 						</div>
 					</div>
@@ -389,17 +158,6 @@
 						<p>Acknowledged excellence and outstanding contributions</p>
 						<div id="awards-list">
 							<p>Loading awards...</p>
-						</div>
-					</div>
-				</section>
-
-				<!-- Interests & Hobbies -->
-				<section id="interests">
-					<div class="container">
-						<h3>Beyond Work</h3>
-						<p>Passions and interests that keep me balanced</p>
-						<div class="features" id="interests-list">
-							<p>Loading interests...</p>
 						</div>
 					</div>
 				</section>
@@ -451,21 +209,41 @@
 					<div class="container">
 						<h3>Get In Touch</h3>
 						<p>Let's connect! I'm always open to discussing new opportunities and collaborations.</p>
-						<ul class="feature-icons">
-							<li class="icon solid fa-envelope">
-								<strong>Email:</strong> <a href="mailto:shreyansh.chheda@gmail.com">shreyansh.chheda@gmail.com</a>
+						<ul class="contact-list">
+							<li class="contact-item">
+								<span class="contact-icon icon solid fa-envelope" aria-hidden="true"></span>
+								<div class="contact-details">
+									<strong>Email</strong>
+									<a href="mailto:shreyansh.chheda@gmail.com">shreyansh.chheda@gmail.com</a>
+								</div>
 							</li>
-							<li class="icon solid fa-phone">
-								<strong>Phone:</strong> <a href="tel:+919820477990">+91 9820477990</a>
+							<li class="contact-item">
+								<span class="contact-icon icon solid fa-phone" aria-hidden="true"></span>
+								<div class="contact-details">
+									<strong>Phone</strong>
+									<a href="tel:+919820477990">+91 9820477990</a>
+								</div>
 							</li>
-							<li class="icon brands fa-linkedin">
-								<strong>LinkedIn:</strong> <a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank">shreyansh-chheda</a>
+							<li class="contact-item">
+								<span class="contact-icon icon brands fa-linkedin" aria-hidden="true"></span>
+								<div class="contact-details">
+									<strong>LinkedIn</strong>
+									<a href="https://linkedin.com/in/shreyansh-chheda/" target="_blank" rel="noopener">shreyansh-chheda</a>
+								</div>
 							</li>
-							<li class="icon brands fa-github">
-								<strong>GitHub:</strong> <a href="https://github.com/shrey-c" target="_blank">github.com/shrey-c</a>
+							<li class="contact-item">
+								<span class="contact-icon icon brands fa-github" aria-hidden="true"></span>
+								<div class="contact-details">
+									<strong>GitHub</strong>
+									<a href="https://github.com/shrey-c" target="_blank" rel="noopener">github.com/shrey-c</a>
+								</div>
 							</li>
-							<li class="icon solid fa-map-marker-alt">
-								<strong>Location:</strong> Pune, Maharashtra, India
+							<li class="contact-item">
+								<span class="contact-icon icon solid fa-map-marker-alt" aria-hidden="true"></span>
+								<div class="contact-details">
+									<strong>Location</strong>
+									<p>Pune, Maharashtra, India</p>
+								</div>
 							</li>
 						</ul>
 					</div>
@@ -473,30 +251,59 @@
 
 			</div>
 
-			<!-- Footer -->
-			<section id="footer">
-				<div class="container">
-					<ul class="copyright">
-						<li>&copy; 2025 Shreyansh Chheda. All rights reserved.</li>
-						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</section>
-
-		</div>
+		<!-- Footer -->
+		<section id="footer" style="margin-top: 0; padding-top: 2rem;">
+			<div class="container">
+				<ul class="copyright">
+					<li>&copy; 2025 Shreyansh Chheda. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</section>		</div>
 
 		<!-- Scripts -->
-		<script src="template-assets/js/jquery.min.js"></script>
-		<script src="template-assets/js/jquery.scrolly.min.js"></script>
-		<script src="template-assets/js/jquery.scrollex.min.js"></script>
-		<script src="template-assets/js/browser.min.js"></script>
-		<script src="template-assets/js/breakpoints.min.js"></script>
-		<script src="template-assets/js/util.js"></script>
-		<script src="template-assets/js/main.js"></script>
+		<script src="/static/template-assets/js/jquery.min.js"></script>
+		<script src="/static/template-assets/js/jquery.scrolly.min.js"></script>
+		<script src="/static/template-assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/template-assets/js/browser.min.js"></script>
+		<script src="/static/template-assets/js/breakpoints.min.js"></script>
+		<script src="/static/template-assets/js/util.js"></script>
+		
+		<script>
+			const READ_MORE_THRESHOLDS = {
+				summaryChars: 600,
+				summaryCollapsedHeight: 220,
+				experienceRoleChars: 520,
+				experienceCollapsedHeight: 260,
+				experienceVisibleCount: 2,
+				projectDescriptionChars: 420,
+				projectCollapsedHeight: 220,
+				awardDescriptionChars: 320,
+				awardCollapsedHeight: 200,
+				skillsVisibleCount: 4,
+				skillCategoryChars: 380,
+				skillCategoryCollapsedHeight: 140,
+				educationDetailChars: 420,
+				educationCollapsedHeight: 210,
+				certificationDetailChars: 360,
+				certificationCollapsedHeight: 190,
+				projectsVisibleCount: 3,
+				certificationsVisibleCount: 4,
+				awardsVisibleCount: 3
+			};
+		</script>
 		
 		<script>
 			// Load Resume Data
 			async function loadResumeData() {
+				const isStaticSite = typeof window !== 'undefined' && (
+					window.location.hostname.endsWith('github.io') ||
+					window.location.protocol === 'file:'
+				);
+				if (isStaticSite) {
+					loadFallbackData();
+					return;
+				}
 				try {
 					const response = await fetch('/api/resume');
 					
@@ -505,144 +312,562 @@
 					}
 					
 					const data = await response.json();
+					populateResumeData(data);
 					
-					// Update Summary
-					document.getElementById('summary').textContent = data.summary;
+				} catch (error) {
+					console.log('API not available, using fallback data:', error.message);
+					loadFallbackData();
+				}
+			}
+			
+			function populateResumeData(data) {
+				// Update Summary
+				document.getElementById('summary').textContent = data.summary;
+				setupSummaryReadMore();
 					
-					// Update Experience
-					const experienceList = document.getElementById('experience-list');
-					experienceList.innerHTML = data.experience.map(exp => `
-						<article style="margin-bottom: 2em; padding: 1.5em; background: #f8f9fa; border-radius: 10px;">
-							<h4 style="color: #667eea; margin-bottom: 0.5em;">
-								${exp.position} - ${exp.company}
-							</h4>
-							<p style="color: #666; margin-bottom: 0.5em;">
-								<strong>${exp.start_date} - ${exp.end_date || 'Present'}</strong> | ${exp.location}
-							</p>
-							<p style="margin-bottom: 1em;">${exp.description}</p>
-							${exp.achievements && exp.achievements.length > 0 ? `
-								<ul style="margin-left: 1.5em;">
-									${exp.achievements.map(a => `<li>${a}</li>`).join('')}
-								</ul>
-							` : ''}
-						</article>
-					`).join('');
-					
-					// Update Skills
-					const skillsList = document.getElementById('skills-list');
-					const skillsByCategory = {};
-					data.skills.forEach(skill => {
-						if (!skillsByCategory[skill.category]) {
-							skillsByCategory[skill.category] = [];
-						}
-						skillsByCategory[skill.category].push(skill.name);
-					});
-					
-					skillsList.innerHTML = '<ul class="feature-icons">' + 
-						Object.entries(skillsByCategory).map(([category, skills]) => `
-							<li class="icon solid fa-code">
-								<strong>${category}:</strong><br/>
-								${skills.join(', ')}
-							</li>
-						`).join('') + 
-					'</ul>';
-					
-					// Update Projects
-					const projectsList = document.getElementById('projects-list');
-					projectsList.innerHTML = data.projects.map(proj => `
-						<article>
-							<div class="inner">
-								<h4>${proj.name}</h4>
-								<p>${proj.description}</p>
-								<p><strong>Technologies:</strong> ${proj.technologies.join(', ')}</p>
-								${proj.highlights && proj.highlights.length > 0 ? `
-									<ul>
-										${proj.highlights.map(h => `<li>${h}</li>`).join('')}
+				// Update Experience with Timeline Design
+				const experienceList = document.getElementById('experience-list');
+				experienceList.innerHTML = '<div class="experience-timeline fade-in">' +
+					data.experience.map(exp => `
+						<div class="experience-item">
+							<div class="experience-header">
+								<div class="experience-title">
+									<h4>${exp.position}</h4>
+									<div class="experience-company">${exp.company} • ${exp.location}</div>
+								</div>
+								<div class="experience-date">${exp.start_date} - ${exp.end_date || 'Present'}</div>
+							</div>
+							<div class="experience-body">
+								<p class="experience-description">${exp.description}</p>
+								${exp.achievements && exp.achievements.length > 0 ? `
+									<ul class="experience-achievements">
+										${exp.achievements.map(a => `<li>${a}</li>`).join('')}
 									</ul>
 								` : ''}
 							</div>
-						</article>
-					`).join('');
+						</div>
+					`).join('') +
+				'</div>';
+
+				setupExperienceReadMore();
+				setupExperienceSectionReadMore();
 					
-					// Update Education
-					const educationList = document.getElementById('education-list');
-					educationList.innerHTML = data.education.map(edu => `
-						<article style="margin-bottom: 2em; padding: 1.5em; background: #f8f9fa; border-radius: 10px;">
-							<h4 style="color: #667eea; margin-bottom: 0.5em;">
-								${edu.degree} in ${edu.field_of_study}
-							</h4>
-							<p style="color: #666; margin-bottom: 0.5em;">
-								<strong>${edu.institution}</strong> | ${edu.location}
-							</p>
-							<p style="color: #666;">
-								${edu.start_date} - ${edu.end_date || 'Present'}
-							</p>
-							${edu.gpa ? `<p><strong>GPA:</strong> ${edu.gpa}</p>` : ''}
-							${edu.honors && edu.honors.length > 0 ? `
-								<p><strong>Honors:</strong> ${edu.honors.join(', ')}</p>
+				// Update Skills with Tag-Based Design
+				const skillsList = document.getElementById('skills-list');
+				const skillsByCategory = {};
+				
+				// Icon mapping for categories
+				const categoryIcons = {
+					'Generative AI': '🤖',
+					'AI & Machine Learning': '🧠',
+					'Programming Languages': '💻',
+					'Frameworks & Libraries': '📚',
+					'Databases & Vector Stores': '🗄️',
+					'Cloud & DevOps': '☁️',
+					'Tools & Platforms': '🛠️',
+					'Other': '⚙️'
+				};
+				
+				data.skills.forEach(skill => {
+					if (!skillsByCategory[skill.category]) {
+						skillsByCategory[skill.category] = [];
+					}
+					skillsByCategory[skill.category].push(skill.name);
+				});
+				
+				const skillsContent = '<div class="skills-container fade-in">' +
+					Object.entries(skillsByCategory).map(([category, skills]) => `
+						<div class="skill-category">
+							<div class="skill-category-header">
+								<div class="skill-category-icon">${categoryIcons[category] || '⚙️'}</div>
+								<h4 class="skill-category-title">${category}</h4>
+							</div>
+							<div class="skill-tags">
+								${skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+							</div>
+						</div>
+					`).join('') +
+				'</div>';
+				
+				skillsList.innerHTML = skillsContent;
+				setupSkillsReadMore();
+				
+				// Update Projects with Card Design
+				const projectsList = document.getElementById('projects-list');
+				projectsList.innerHTML = '<div class="projects-grid fade-in">' +
+					data.projects.map(proj => `
+						<article class="project-card">
+							<h4>${proj.name}</h4>
+							<p class="project-description">${proj.description}</p>
+							<div>
+								<div class="project-tech-label">Technologies:</div>
+								<div class="project-tech-tags">
+									${proj.technologies.map(tech => `<span class="project-tech-tag">${tech}</span>`).join('')}
+								</div>
+							</div>
+							${proj.highlights && proj.highlights.length > 0 ? `
+								<ul class="project-highlights">
+									${proj.highlights.map(h => `<li>${h}</li>`).join('')}
+								</ul>
 							` : ''}
 						</article>
-					`).join('');
+					`).join('') +
+				'</div>';
+
+					setupProjectReadMore();
 					
-					// Update Certifications
-					const certificationsList = document.getElementById('certifications-list');
-					certificationsList.innerHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em;">' +
-						data.certifications.map(cert => `
-							<article style="padding: 1.5em; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
-								<h4 style="color: #667eea; margin-bottom: 0.5em; font-size: 1em;">
-									${cert.name}
-								</h4>
-								<p style="color: #666; margin-bottom: 0.5em;">
-									<strong>${cert.issuer}</strong> | ${cert.issue_date}
-								</p>
-								${cert.credential_id ? `
-									<p style="color: #888; font-size: 0.9em; margin-bottom: 0.5em;">
-										Credential ID: ${cert.credential_id}
-									</p>
-								` : ''}
-								${cert.skills && cert.skills.length > 0 ? `
-									<p style="color: #555; font-size: 0.9em;">
-										<strong>Skills:</strong> ${cert.skills.join(', ')}
-									</p>
-								` : ''}
-							</article>
-						`).join('') +
-					'</div>';
+				// Update Education with Modern Card Design
+				const educationList = document.getElementById('education-list');
+				educationList.innerHTML = '<div class="education-list fade-in">' +
+					data.education.map(edu => `
+						<article class="education-card">
+							<div class="education-heading">
+								<h4>${edu.degree} in ${edu.field_of_study}</h4>
+								<p class="education-institution">${edu.institution} • ${edu.location}</p>
+								<p class="education-date">${edu.start_date} - ${edu.end_date || 'Present'}</p>
+							</div>
+							<div class="education-body">
+								${edu.gpa ? `<p><span class="education-label">GPA:</span> ${edu.gpa}</p>` : ''}
+								${edu.honors && edu.honors.length > 0 ? `<p><span class="education-label">Honors:</span> ${edu.honors.join(', ')}</p>` : ''}
+							</div>
+						</article>
+					`).join('') +
+				'</div>';
+				setupEducationReadMore();
+				
+				// Update Certifications with Grid Card Layout
+				const certificationsList = document.getElementById('certifications-list');
+				certificationsList.innerHTML = '<div class="certifications-grid fade-in">' +
+					data.certifications.map(cert => `
+						<article class="certification-card">
+							<div class="certification-badge">CERTIFIED</div>
+							<div class="certification-body">
+								<h4>${cert.name}</h4>
+								<p class="certification-issuer">${cert.issuer}</p>
+								<p class="certification-date">${cert.issue_date}</p>
+								${cert.credential_id ? `<p class="certification-id">ID: ${cert.credential_id}</p>` : ''}
+								${cert.skills && cert.skills.length > 0 ? `<p class="certification-skills"><strong>Skills:</strong> ${cert.skills.join(', ')}</p>` : ''}
+							</div>
+						</article>
+					`).join('') +
+				'</div>';
+				setupCertificationReadMore();
 					
 					// Update Awards
 					const awardsList = document.getElementById('awards-list');
 					awardsList.innerHTML = data.awards.map(award => `
-						<article style="margin-bottom: 1.5em; padding: 1.5em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
-							<h4 style="color: white; margin-bottom: 0.5em;">
+						<article class="award-card">
+							<h4>
 								🏆 ${award.title}
 							</h4>
-							<p style="margin-bottom: 0.5em; opacity: 0.9;">
+							<p class="award-meta">
 								<strong>${award.issuer}</strong> | ${award.date}
 							</p>
 							${award.description ? `
-								<p style="opacity: 0.95;">${award.description}</p>
+								<p class="award-description">${award.description}</p>
 							` : ''}
 						</article>
 					`).join('');
-					
-					// Update Interests
-					const interestsList = document.getElementById('interests-list');
-					interestsList.innerHTML = data.interests.map(interest => `
-						<article>
-							<div class="inner">
-								<h4>${interest.name}</h4>
-								${interest.description ? `<p>${interest.description}</p>` : ''}
-							</div>
-						</article>
-					`).join('');
-					
-				} catch (error) {
-					console.error('Error loading resume data:', error);
-					// If API fails (GitHub Pages), the static HTML content will be displayed
-					// No need to show error as content is already in HTML
+
+					setupAwardsReadMore();
 				}
-			}
-			
+				
+				function loadFallbackData() {
+					// Fallback data when Python backend is not running  
+					const fallbackData = {
+						summary: "AI/ML Engineer specializing in full-stack development, data science and AI/ML. Proven ability to build end-to-end machine learning solutions and drive business impact—such as saving 3M AUD annually through automation and enhancing customer experience via AskTelstra GenAI chatbot. Expert in Python, AI, Java, and cloud technologies, with a track record of innovation, leadership, and scalable software delivery.",
+						experience: [
+							{
+								position: "ML Engineer",
+								company: "Telstra (TLSA)",
+								location: "Pune, Maharashtra, India",
+								start_date: "2025-07",
+								end_date: null,
+								description: "Leading AI/ML initiatives including GenAI call drivers automation, AskTelstra chatbot enhancements, and advanced analytics solutions.",
+								achievements: [
+									"Built GenAI Call Drivers automation analyzing 25K calls/day, delivering insights to board of directors",
+									"Enhanced AskTelstra GenAI RAG chatbot, reducing build costs by 88% and scaling to 15K+ frontline agents",
+									"Automated NATAMA Fault Data Process saving 3M AUD annually",
+									"Developed ensemble ML model (XGBoost, GRU, Logistic Regression) for PII identification"
+								]
+							},
+							{
+								position: "Machine Learning Engineer",
+								company: "Telstra",
+								location: "Pune, Maharashtra, India",
+								start_date: "2024-05",
+								end_date: "2025-06",
+								description: "Enhanced AskTelstra RAG-based GenAI chatbot architecture, security, and performance.",
+								achievements: [
+									"Introduced unit testing with pytest, backend authentication, and SSO using JWT tokens",
+									"Designed comprehensive logging framework with unique identifiers",
+									"Streamlined weekly releases deploying to 1,500 agents with scaling to 5,000",
+									"Awarded Team Awards for FY24 Q4 and FY25 Q1"
+								]
+							}
+						],
+						skills: [
+							// Generative AI
+							{ category: "Generative AI", name: "Large Language Models (LLM)" },
+							{ category: "Generative AI", name: "GPT-4 & GPT-5" },
+							{ category: "Generative AI", name: "Ollama" },
+							{ category: "Generative AI", name: "Prompt Engineering" },
+							{ category: "Generative AI", name: "RAG (Retrieval Augmented Generation)" },
+							{ category: "Generative AI", name: "LangChain" },
+							{ category: "Generative AI", name: "LangGraph" },
+							{ category: "Generative AI", name: "Agentic AI Workflows" },
+							{ category: "Generative AI", name: "Multi-Agent Systems" },
+							{ category: "Generative AI", name: "Model Context Protocol (MCP)" },
+							{ category: "Generative AI", name: "GenAI Solution Architecture" },
+							
+							// AI & Machine Learning
+							{ category: "AI & Machine Learning", name: "Machine Learning" },
+							{ category: "AI & Machine Learning", name: "Deep Learning" },
+							{ category: "AI & Machine Learning", name: "Natural Language Processing (NLP)" },
+							{ category: "AI & Machine Learning", name: "Computer Vision" },
+							{ category: "AI & Machine Learning", name: "Sentiment Analysis" },
+							{ category: "AI & Machine Learning", name: "Topic Modeling" },
+							{ category: "AI & Machine Learning", name: "Neural Networks" },
+							{ category: "AI & Machine Learning", name: "Ensemble Learning" },
+							{ category: "AI & Machine Learning", name: "XGBoost" },
+							{ category: "AI & Machine Learning", name: "Random Forest" },
+							{ category: "AI & Machine Learning", name: "Logistic Regression" },
+							{ category: "AI & Machine Learning", name: "RNN/GRU/LSTM" },
+							{ category: "AI & Machine Learning", name: "CNN" },
+							{ category: "AI & Machine Learning", name: "Transfer Learning" },
+							{ category: "AI & Machine Learning", name: "Feature Engineering" },
+							{ category: "AI & Machine Learning", name: "Model Optimization" },
+							{ category: "AI & Machine Learning", name: "MLOps & ML Pipelines" },
+							
+							// Programming Languages
+							{ category: "Programming Languages", name: "Python" },
+							{ category: "Programming Languages", name: "Java" },
+							{ category: "Programming Languages", name: "JavaScript" },
+							{ category: "Programming Languages", name: "Bash/Shell Scripting" },
+							
+							// Frameworks & Libraries
+							{ category: "Frameworks & Libraries", name: "PyTorch" },
+							{ category: "Frameworks & Libraries", name: "TensorFlow" },
+							{ category: "Frameworks & Libraries", name: "Scikit-learn" },
+							{ category: "Frameworks & Libraries", name: "Hugging Face Transformers" },
+							{ category: "Frameworks & Libraries", name: "spaCy" },
+							{ category: "Frameworks & Libraries", name: "Pandas" },
+							{ category: "Frameworks & Libraries", name: "NumPy" },
+							{ category: "Frameworks & Libraries", name: "FastAPI" },
+							{ category: "Frameworks & Libraries", name: "Flask" },
+							{ category: "Frameworks & Libraries", name: "Streamlit" },
+							{ category: "Frameworks & Libraries", name: "Spring Boot" },
+							{ category: "Frameworks & Libraries", name: "React.js" },
+							{ category: "Frameworks & Libraries", name: "pytest" },
+							{ category: "Frameworks & Libraries", name: "JUnit" },
+							
+							// Databases
+							{ category: "Databases & Vector Stores", name: "FAISS" },
+							{ category: "Databases & Vector Stores", name: "ChromaDB" },
+							{ category: "Databases & Vector Stores", name: "Pinecone" },
+							{ category: "Databases & Vector Stores", name: "PostgreSQL" },
+							{ category: "Databases & Vector Stores", name: "MySQL" },
+							{ category: "Databases & Vector Stores", name: "MongoDB" },
+							{ category: "Databases & Vector Stores", name: "SQL" },
+							
+							// Cloud & DevOps
+							{ category: "Cloud & DevOps", name: "Microsoft Azure" },
+							{ category: "Cloud & DevOps", name: "Azure OpenAI Service" },
+							{ category: "Cloud & DevOps", name: "Azure Cognitive Services" },
+							{ category: "Cloud & DevOps", name: "Azure Data Factory" },
+							{ category: "Cloud & DevOps", name: "Azure ML Studio" },
+							{ category: "Cloud & DevOps", name: "Azure App Service" },
+							{ category: "Cloud & DevOps", name: "Azure Functions" },
+							{ category: "Cloud & DevOps", name: "Docker" },
+							{ category: "Cloud & DevOps", name: "Kubernetes" },
+							{ category: "Cloud & DevOps", name: "Git & GitHub" },
+							{ category: "Cloud & DevOps", name: "CI/CD Pipelines" },
+							
+							// Tools
+							{ category: "Tools & Platforms", name: "Jupyter Notebooks" },
+							{ category: "Tools & Platforms", name: "VS Code" },
+							{ category: "Tools & Platforms", name: "PowerBI" },
+							{ category: "Tools & Platforms", name: "Postman" },
+							{ category: "Tools & Platforms", name: "Swagger" }
+						],
+						projects: [
+							{
+								name: "Resume Chatbot",
+								description: "GenAI-powered chatbot for interactive resume exploration",
+								technologies: ["Python", "FastAPI", "LangChain", "OpenAI", "React"],
+								highlights: [
+									"Built using LangGraph for conversational AI",
+									"Deployed on GitHub Pages with automated CI/CD"
+								]
+							}
+						],
+						education: [
+							{
+								degree: "Bachelor of Engineering",
+								field_of_study: "Computer Science",
+								institution: "University",
+								location: "India",
+								start_date: "2017",
+								end_date: "2021",
+								gpa: "3.8/4.0",
+								honors: ["Dean's List"]
+							}
+						],
+						certifications: [
+							{
+								name: "Azure AI Engineer Associate",
+								issuer: "Microsoft",
+								issue_date: "2024",
+								credential_id: "CERT-12345",
+								skills: ["Azure AI", "Machine Learning", "NLP"]
+							}
+						],
+						awards: [
+							{
+								title: "Team Award FY25 Q1",
+								issuer: "Telstra",
+								date: "2025",
+								description: "Outstanding contribution to AskTelstra GenAI chatbot"
+							},
+							{
+								title: "Data Engineering India Achiever of the Month",
+								issuer: "Telstra",
+								date: "January 2025",
+								description: "Recognition for exceptional performance"
+							}
+						]
+					};
+					
+					populateResumeData(fallbackData);
+				}
+
+				function setupExperienceReadMore() {
+					const items = document.querySelectorAll('#experience-list .experience-item');
+					const getBody = (item) => item.querySelector('.experience-body');
+					applyReadMoreToElements(items, {
+						getContent: getBody,
+						threshold: READ_MORE_THRESHOLDS.experienceRoleChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.experienceCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+				}
+
+				function setupExperienceSectionReadMore() {
+					const timeline = document.querySelector('#experience-list .experience-timeline');
+					if (!timeline) {
+						return;
+					}
+					const items = Array.from(timeline.querySelectorAll('.experience-item'));
+					applySectionReadMore(timeline, items, {
+						visibleCount: READ_MORE_THRESHOLDS.experienceVisibleCount,
+						collapsedLabel: `Show all experience (${items.length})`,
+						expandedLabel: 'Show fewer roles',
+						withBlurOverlay: true
+					});
+				}
+
+				function setupProjectReadMore() {
+					const projectCards = document.querySelectorAll('#projects-list .project-card');
+					applyReadMoreToElements(projectCards, {
+						getContent: (card) => card.querySelector('.project-description'),
+						threshold: READ_MORE_THRESHOLDS.projectDescriptionChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.projectCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+					const projectsGrid = document.querySelector('#projects-list .projects-grid');
+					if (!projectsGrid) {
+						return;
+					}
+					const cards = Array.from(projectsGrid.querySelectorAll('.project-card'));
+					applySectionReadMore(projectsGrid, cards, {
+						visibleCount: READ_MORE_THRESHOLDS.projectsVisibleCount,
+						collapsedLabel: `Show all projects (${cards.length})`,
+						expandedLabel: 'Show fewer projects',
+						withBlurOverlay: true
+					});
+				}
+
+				function setupSkillsReadMore() {
+					const skillsContainer = document.querySelector('#skills-list .skills-container');
+					if (!skillsContainer) {
+						return;
+					}
+					const categories = Array.from(skillsContainer.querySelectorAll('.skill-category'));
+					applyReadMoreToElements(categories, {
+						getContent: (category) => category.querySelector('.skill-tags'),
+						threshold: READ_MORE_THRESHOLDS.skillCategoryChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.skillCategoryCollapsedHeight,
+						moreLabel: 'Show more skills',
+						lessLabel: 'Show fewer skills'
+					});
+					applySectionReadMore(skillsContainer, categories, {
+						visibleCount: READ_MORE_THRESHOLDS.skillsVisibleCount,
+						collapsedLabel: `Show all skills (${categories.length})`,
+						expandedLabel: 'Show fewer skills',
+						withBlurOverlay: true
+					});
+				}
+
+				function setupSummaryReadMore() {
+					const summaryBlock = document.querySelector('#about .summary-block');
+					if (!summaryBlock) {
+						return;
+					}
+					applyReadMoreToElements([summaryBlock], {
+						getContent: (block) => block.querySelector('.summary-text'),
+						threshold: READ_MORE_THRESHOLDS.summaryChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.summaryCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+				}
+
+				function setupEducationReadMore() {
+					const educationCards = document.querySelectorAll('#education-list .education-card');
+					applyReadMoreToElements(educationCards, {
+						getContent: (card) => card.querySelector('.education-body'),
+						threshold: READ_MORE_THRESHOLDS.educationDetailChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.educationCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+				}
+
+				function setupCertificationReadMore() {
+					const certificationsGrid = document.querySelector('#certifications-list .certifications-grid');
+					if (!certificationsGrid) {
+						return;
+					}
+					const certificationCards = Array.from(certificationsGrid.querySelectorAll('.certification-card'));
+					applyReadMoreToElements(certificationCards, {
+						getContent: (card) => card.querySelector('.certification-body'),
+						threshold: READ_MORE_THRESHOLDS.certificationDetailChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.certificationCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+					applySectionReadMore(certificationsGrid, certificationCards, {
+						visibleCount: READ_MORE_THRESHOLDS.certificationsVisibleCount,
+						collapsedLabel: `Show all certifications (${certificationCards.length})`,
+						expandedLabel: 'Show fewer certifications',
+						withBlurOverlay: true
+					});
+				}
+
+				function setupAwardsReadMore() {
+					const awardsContainer = document.getElementById('awards-list');
+					if (!awardsContainer) {
+						return;
+					}
+					const awardCards = Array.from(awardsContainer.querySelectorAll('.award-card'));
+					applyReadMoreToElements(awardCards, {
+						getContent: (card) => card.querySelector('.award-description'),
+						threshold: READ_MORE_THRESHOLDS.awardDescriptionChars,
+						collapsedHeight: READ_MORE_THRESHOLDS.awardCollapsedHeight,
+						moreLabel: 'Read more',
+						lessLabel: 'Show less'
+					});
+					applySectionReadMore(awardsContainer, awardCards, {
+						visibleCount: READ_MORE_THRESHOLDS.awardsVisibleCount,
+						collapsedLabel: `Show all awards (${awardCards.length})`,
+						expandedLabel: 'Show fewer awards',
+						withBlurOverlay: true
+					});
+				}
+
+				function applyReadMoreToElements(elements, options) {
+					if (!elements || elements.length === 0) {
+						return;
+					}
+					elements.forEach((element) => {
+						const content = options.getContent(element);
+						if (!content) {
+							return;
+						}
+						const textLength = content.textContent.trim().length;
+						if (textLength <= options.threshold) {
+							return;
+						}
+						const collapsedHeight = options.collapsedHeight || 240;
+						content.classList.add('collapsible-content', 'is-collapsed');
+						content.style.maxHeight = `${collapsedHeight}px`;
+						const handleTransitionEnd = (event) => {
+							if (event.propertyName !== 'max-height') {
+								return;
+							}
+							if (!content.classList.contains('is-collapsed')) {
+								content.style.maxHeight = 'none';
+							}
+						};
+						content.addEventListener('transitionend', handleTransitionEnd);
+						const expandContent = () => {
+							content.classList.remove('is-collapsed');
+							const fullHeight = content.scrollHeight;
+							content.style.maxHeight = `${fullHeight}px`;
+						};
+						const collapseContent = () => {
+							const currentHeight = content.scrollHeight;
+							content.style.maxHeight = `${currentHeight}px`;
+							requestAnimationFrame(() => {
+								content.classList.add('is-collapsed');
+								content.style.maxHeight = `${collapsedHeight}px`;
+							});
+						};
+						const toggle = document.createElement('button');
+						toggle.type = 'button';
+						toggle.className = 'read-more-toggle';
+						toggle.textContent = options.moreLabel || 'Read more';
+						toggle.setAttribute('aria-expanded', 'false');
+						toggle.addEventListener('click', () => {
+							const wasCollapsed = content.classList.contains('is-collapsed');
+							if (wasCollapsed) {
+								expandContent();
+							} else {
+								collapseContent();
+							}
+							const expanded = wasCollapsed;
+							toggle.textContent = expanded ? (options.lessLabel || 'Show less') : (options.moreLabel || 'Read more');
+							toggle.setAttribute('aria-expanded', String(expanded));
+						});
+						element.appendChild(toggle);
+					});
+				}
+
+				function applySectionReadMore(container, items, options) {
+					if (!container || !items || items.length <= options.visibleCount) {
+						return;
+					}
+					const collapsedClass = options.collapsedClass || 'section-is-collapsed';
+					const useBlurOverlay = Boolean(options.withBlurOverlay);
+					const overlayElement = useBlurOverlay
+						? (container.closest('.container') || container)
+						: null;
+					overlayElement?.classList.add('section-collapsible');
+					const toggle = document.createElement('button');
+					toggle.type = 'button';
+					toggle.className = 'read-more-toggle section-read-more';
+					toggle.textContent = options.collapsedLabel;
+					toggle.setAttribute('aria-expanded', 'false');
+					const updateVisibility = (expanded) => {
+						items.forEach((item, index) => {
+							const shouldHide = !expanded && index >= options.visibleCount;
+							item.style.display = shouldHide ? 'none' : '';
+						});
+						overlayElement?.classList.toggle(collapsedClass, !expanded);
+					};
+					updateVisibility(false);
+					toggle.addEventListener('click', () => {
+						const expanded = toggle.getAttribute('aria-expanded') === 'true';
+						const nextExpanded = !expanded;
+						updateVisibility(nextExpanded);
+						toggle.setAttribute('aria-expanded', String(nextExpanded));
+						toggle.textContent = nextExpanded ? options.expandedLabel : options.collapsedLabel;
+					});
+					container.parentElement?.appendChild(toggle);
+				}
+				
 			// Chatbot Functionality
 			const chatMessages = document.getElementById('chat-messages');
 			const chatForm = document.getElementById('chat-input-form');
@@ -661,7 +886,7 @@
 				chatMessages.appendChild(messageDiv);
 				chatMessages.scrollTop = chatMessages.scrollHeight;
 			}
-			
+
 			function showTypingIndicator() {
 				const typingDiv = document.createElement('div');
 				typingDiv.className = 'message bot typing';
@@ -669,12 +894,11 @@
 				typingDiv.innerHTML = `
 					<div class="message-avatar">🤖</div>
 					<div class="message-content">
-						<div class="loading-dots">
-							<span>●</span>
-							<span>●</span>
-							<span>●</span>
+						<div class="typing-indicator">
+							<span></span>
+							<span></span>
+							<span></span>
 						</div>
-						<p style="font-size: 0.8em; margin-top: 0.5em; opacity: 0.7;">AI is thinking...</p>
 					</div>
 				`;
 				chatMessages.appendChild(typingDiv);
@@ -742,48 +966,204 @@
 				sendMessage(userInput.value);
 			});
 			
-			// Active navigation highlighting on scroll
-			const sections = document.querySelectorAll('section[id]');
-			const navLinks = document.querySelectorAll('#nav a');
-			
-			window.addEventListener('scroll', () => {
-				let current = '';
-				
-				sections.forEach(section => {
-					const sectionTop = section.offsetTop;
-					const sectionHeight = section.clientHeight;
-					if (window.pageYOffset >= sectionTop - 200) {
-						current = section.getAttribute('id');
+			const updateBodyOffset = () => {
+				const headerPrimary = document.querySelector('#header .header-primary');
+				if (!headerPrimary) return;
+				const baseOffset = headerPrimary.offsetHeight + 30;
+				document.body.style.paddingTop = `${baseOffset}px`;
+			};
+
+			let resizeTimer;
+			window.addEventListener('load', updateBodyOffset);
+			window.addEventListener('resize', () => {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(updateBodyOffset, 120);
+			});
+
+			// Section navigation interactions
+			const sectionNav = document.querySelector('.section-nav');
+			const sectionNavLinks = document.querySelectorAll('.section-nav a');
+			const sectionTargets = Array.from(sectionNavLinks)
+				.map(link => document.querySelector(link.getAttribute('href')))
+				.filter(Boolean);
+			const menuToggleButton = document.querySelector('.header-menu-toggle');
+			const themeToggleButton = document.querySelector('.theme-toggle');
+			const themeIcon = themeToggleButton?.querySelector('.theme-icon');
+			const themeLabel = themeToggleButton?.querySelector('.theme-label');
+
+			const applyTheme = (theme) => {
+				const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
+				document.body.dataset.theme = resolvedTheme;
+				if (themeToggleButton) {
+					themeToggleButton.setAttribute('aria-pressed', String(resolvedTheme === 'dark'));
+					if (themeIcon) {
+						themeIcon.textContent = resolvedTheme === 'dark' ? '☀️' : '🌙';
 					}
+					if (themeLabel) {
+						themeLabel.textContent = resolvedTheme === 'dark' ? 'Light' : 'Dark';
+					}
+				}
+				try {
+					localStorage.setItem('preferred-theme', resolvedTheme);
+				} catch (error) {
+					console.warn('Theme preference could not be saved:', error);
+				}
+			};
+
+			const storedTheme = (() => {
+				try {
+					return localStorage.getItem('preferred-theme');
+				} catch (error) {
+					return null;
+				}
+			})();
+
+			applyTheme(storedTheme || 'light');
+
+			themeToggleButton?.addEventListener('click', () => {
+				const nextTheme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+				applyTheme(nextTheme);
+			});
+
+			const setMenuState = (open) => {
+				if (!menuToggleButton || !sectionNav) return;
+				menuToggleButton.setAttribute('aria-expanded', String(open));
+				sectionNav.classList.toggle('open', open);
+				sectionNav.setAttribute('aria-hidden', String(!open));
+			};
+
+			const closeMenu = () => setMenuState(false);
+
+			menuToggleButton?.addEventListener('click', (event) => {
+				event.stopPropagation();
+				const isExpanded = menuToggleButton.getAttribute('aria-expanded') === 'true';
+				setMenuState(!isExpanded);
+			});
+
+			document.addEventListener('click', (event) => {
+				if (!sectionNav?.classList.contains('open')) return;
+				if (sectionNav.contains(event.target) || menuToggleButton?.contains(event.target)) return;
+				closeMenu();
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') {
+					closeMenu();
+				}
+			});
+
+			const setActiveLink = (id) => {
+				sectionNavLinks.forEach(link => {
+					link.classList.toggle('active', link.dataset.section === id);
 				});
-				
-				navLinks.forEach(link => {
-					link.classList.remove('active');
-					if (link.getAttribute('href') === `#${current}`) {
-						link.classList.add('active');
+			};
+
+			const getScrollOffset = () => {
+				const headerPrimary = document.querySelector('#header .header-primary');
+				return (headerPrimary?.offsetHeight || 70) + 24;
+			};
+
+			const scrollToSection = (section) => {
+				const offset = getScrollOffset();
+				const targetPosition = section.getBoundingClientRect().top + window.pageYOffset;
+				window.scrollTo({
+					top: Math.max(targetPosition - offset, 0),
+					behavior: 'smooth'
+				});
+			};
+
+			sectionNavLinks.forEach(link => {
+				link.addEventListener('click', (event) => {
+					event.preventDefault();
+					const targetSection = document.querySelector(link.getAttribute('href'));
+					if (targetSection) {
+						scrollToSection(targetSection);
+						setActiveLink(targetSection.id);
+						closeMenu();
 					}
 				});
 			});
+
+			const highlightVisibleSection = (entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						setActiveLink(entry.target.id);
+					}
+				});
+			};
+
+			if ('IntersectionObserver' in window) {
+				const observer = new IntersectionObserver(highlightVisibleSection, {
+					threshold: 0.35,
+					rootMargin: '-20% 0px -55% 0px'
+				});
+				sectionTargets.forEach(section => observer.observe(section));
+			} else {
+				// Fallback for older browsers
+				window.addEventListener('scroll', () => {
+					let currentId = sectionTargets[0]?.id || '';
+					const offset = getScrollOffset();
+					sectionTargets.forEach(section => {
+						if (window.pageYOffset >= section.offsetTop - offset) {
+							currentId = section.id;
+						}
+					});
+					setActiveLink(currentId);
+				});
+			}
 			
-			// Smooth scroll to top button (optional enhancement)
+			// Modern Scroll to Top Button with Enhanced UX
 			let scrollTopBtn = document.createElement('button');
 			scrollTopBtn.innerHTML = '↑';
+			scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
 			scrollTopBtn.style.cssText = `
 				position: fixed;
-				bottom: 30px;
-				right: 30px;
-				width: 50px;
-				height: 50px;
-				background: #49bf9d;
-				color: #1b1f22;
+				bottom: 28px;
+				right: 28px;
+				width: 48px;
+				height: 48px;
+				background: linear-gradient(135deg, #46c9a8 0%, #7de6cf 100%);
+				color: #0f172a;
 				border: none;
-				border-radius: 50%;
-				font-size: 24px;
+				border-radius: 14px;
+				font-size: 22px;
+				font-weight: 700;
 				cursor: pointer;
 				display: none;
 				z-index: 1000;
-				box-shadow: 0 4px 12px rgba(73, 191, 157, 0.4);
+				box-shadow: 0 8px 18px rgba(15, 17, 30, 0.25);
+				transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.2s ease;
 			`;
+
+			const setScrollBtnNeutral = () => {
+				scrollTopBtn.style.transform = 'translateY(0)';
+				scrollTopBtn.style.boxShadow = '0 8px 18px rgba(15, 17, 30, 0.25)';
+				scrollTopBtn.style.filter = 'brightness(1)';
+			};
+
+			const setScrollBtnHover = () => {
+				scrollTopBtn.style.transform = 'translateY(-2px)';
+				scrollTopBtn.style.boxShadow = '0 14px 26px rgba(15, 17, 30, 0.35)';
+				scrollTopBtn.style.filter = 'brightness(1.03)';
+			};
+
+			setScrollBtnNeutral();
+
+			scrollTopBtn.onmouseover = setScrollBtnHover;
+			scrollTopBtn.onmouseout = setScrollBtnNeutral;
+			scrollTopBtn.onmousedown = () => {
+				scrollTopBtn.style.transform = 'translateY(1px)';
+				scrollTopBtn.style.boxShadow = '0 6px 16px rgba(15, 17, 30, 0.28)';
+				scrollTopBtn.style.filter = 'brightness(0.92)';
+			};
+			scrollTopBtn.onmouseup = () => {
+				scrollTopBtn.style.filter = 'brightness(1)';
+				if (scrollTopBtn.matches(':hover')) {
+					setScrollBtnHover();
+				} else {
+					setScrollBtnNeutral();
+				}
+			};
 			scrollTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 			document.body.appendChild(scrollTopBtn);
 			
@@ -795,8 +1175,19 @@
 				}
 			});
 			
-			// Load data on page load
-			window.addEventListener('load', loadResumeData);
+			// Load data on page load with staggered animation
+			window.addEventListener('load', () => {
+				loadResumeData();
+				
+				// Add staggered entrance animations
+				setTimeout(() => {
+					document.querySelectorAll('#main section > .container').forEach((el, index) => {
+						setTimeout(() => {
+							el.classList.add('fade-in');
+						}, index * 100);
+					});
+				}, 200);
+			});
 		</script>
 	</body>
 </html>
