@@ -294,13 +294,14 @@
 		</script>
 		
 		<script>
+			const runningOnStaticSite = typeof window !== 'undefined' && (
+				window.location.hostname.endsWith('github.io') ||
+				window.location.protocol === 'file:'
+			);
+
 			// Load Resume Data
 			async function loadResumeData() {
-				const isStaticSite = typeof window !== 'undefined' && (
-					window.location.hostname.endsWith('github.io') ||
-					window.location.protocol === 'file:'
-				);
-				if (isStaticSite) {
+				if (runningOnStaticSite) {
 					loadFallbackData();
 					return;
 				}
@@ -321,6 +322,7 @@
 			}
 			
 			function populateResumeData(data) {
+				const shouldShowAcademicDetails = !runningOnStaticSite;
 				// Update Summary
 				document.getElementById('summary').textContent = data.summary;
 				setupSummaryReadMore();
@@ -427,8 +429,8 @@
 								<p class="education-date">${edu.start_date} - ${edu.end_date || 'Present'}</p>
 							</div>
 							<div class="education-body">
-								${edu.gpa ? `<p><span class="education-label">GPA:</span> ${edu.gpa}</p>` : ''}
-								${edu.honors && edu.honors.length > 0 ? `<p><span class="education-label">Honors:</span> ${edu.honors.join(', ')}</p>` : ''}
+								${shouldShowAcademicDetails && edu.gpa ? `<p><span class="education-label">GPA:</span> ${edu.gpa}</p>` : ''}
+								${shouldShowAcademicDetails && edu.honors && edu.honors.length > 0 ? `<p><span class="education-label">Honors:</span> ${edu.honors.join(', ')}</p>` : ''}
 							</div>
 						</article>
 					`).join('') +
@@ -608,9 +610,7 @@
 								institution: "University",
 								location: "India",
 								start_date: "2017",
-								end_date: "2021",
-								gpa: "3.8/4.0",
-								honors: ["Dean's List"]
+								end_date: "2021"
 							}
 						],
 						certifications: [
