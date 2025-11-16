@@ -32,12 +32,18 @@ jobs:
       run: |
         mkdir -p _site
         cp -r static/* _site/
-        cp README.md _site/
         
-        # Create a simple index redirect if needed
+        # Ensure .nojekyll exists for GitHub Pages
+        touch _site/.nojekyll
+        
+        # Verify index.html exists
         if [ ! -f _site/index.html ]; then
-          echo "<!DOCTYPE html><html><head><title>Resume Chatbot</title></head><body><h1>Resume Chatbot</h1><p>Please run the FastAPI backend to use this application.</p></body></html>" > _site/index.html
+          echo "ERROR: index.html not found in static directory"
+          exit 1
         fi
+        
+        echo "✅ Deployment package created successfully"
+        ls -la _site/
     
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
