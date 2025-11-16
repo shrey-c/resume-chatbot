@@ -1,0 +1,1032 @@
+{
+  "name": "Shreyansh Chheda",
+  "title": "AI/ML Engineer | GenAI Specialist | Full-Stack Developer",
+  "summary": "AI/ML Engineer specializing in full-stack development, data science and AI/ML. Proven ability to build end-to-end machine learning solutions and drive business impact—such as saving 3M AUD annually through automation and enhancing customer experience via AskTelstra GenAI chatbot. Expert in Python, AI, Java, and cloud technologies, with a track record of innovation, leadership, and scalable software delivery.",
+  "contact": {
+    "email": "shreyansh.chheda@gmail.com",
+    "phone": "+91 9820477990",
+    "linkedin": "https://linkedin.com/in/shreyansh-chheda/",
+    "github": "https://github.com/shreyansh",
+    "website": null,
+    "location": "Pune, Maharashtra, India"
+  },
+  "experience": [
+    {
+      "company": "Telstra (TLSA)",
+      "position": "ML Engineer",
+      "location": "Pune, Maharashtra, India",
+      "start_date": "2025-07",
+      "end_date": null,
+      "description": "Leading AI/ML initiatives including GenAI call drivers automation, AskTelstra chatbot enhancements, and advanced analytics solutions. Tech lead mentoring team on cutting-edge AI solutions.",
+      "achievements": [
+        "Built GenAI Call Drivers automation analyzing 25K calls/day, delivering insights to board of directors, enabling multi-million dollar business decisions",
+        "Designed end-to-end pipeline using Azure Data Factory, AzureML, and PowerBI with GPT-5-mini reasoning model",
+        "Enhanced AskTelstra GenAI RAG chatbot, reducing build costs by 88% and scaling to 15K+ frontline agents",
+        "Automated NATAMA Fault Data Process saving 3M AUD annually and eliminating 28 days of manual effort monthly",
+        "Built GenAI ENPS verbatim analyzer using GPT-4.1-mini, saving a month of manual effort",
+        "Developed ensemble ML model (XGBoost, GRU, Logistic Regression) for PII identification in SMS",
+        "Leader and mentor accelerating developer onboarding and contributions"
+      ]
+    },
+    {
+      "company": "Telstra",
+      "position": "Machine Learning Engineer",
+      "location": "Pune, Maharashtra, India",
+      "start_date": "2024-05",
+      "end_date": "2025-06",
+      "description": "Enhanced AskTelstra RAG-based GenAI chatbot architecture, security, and performance. Streamlined deployment processes and improved system reliability.",
+      "achievements": [
+        "Introduced unit testing with pytest, backend authentication, and SSO using JWT tokens",
+        "Designed comprehensive logging framework with unique identifiers improving traceability",
+        "Streamlined weekly releases deploying to 1,500 agents with scaling to 5,000",
+        "Improved performance via codebase modularization and optimized chunking/indexing",
+        "Awarded Team Awards for FY24 Q4 and FY25 Q1",
+        "Recognized as Data-engineering India Achiever of the Month (Jan 2025)"
+      ]
+    },
+    {
+      "company": "Telstra",
+      "position": "Senior Associate Software Developer",
+      "location": "Pune, Maharashtra, India (Hybrid)",
+      "start_date": "2022-10",
+      "end_date": "2024-04",
+      "description": "ML Developer and Java Developer building scalable email segregation systems and owning API development platform. Led mailbox onboarding initiatives and mentored junior developers.",
+      "achievements": [
+        "Mapped a scalable pathway to onboard new Mailboxes within timelines for stakeholders",
+        "Tested and implemented several ML and DL algorithms from renowned ML libraries to build email segregation systems",
+        "Completed full ML development lifecycle: Data Cleaning, Data Analysis, ML Modelling, ML Pipelining, Documentation and Presentation",
+        "Took ownership of the API development platform as the lead developer",
+        "Implemented connection pooling for the APIs improving latency and response time by over 500%",
+        "Upgraded APIs and increased code coverage to at least 95% to resolve tech debt, making APIs more robust, efficient and secure",
+        "Mentored junior developers on the platform on how to develop fault-tolerant APIs"
+      ]
+    },
+    {
+      "company": "Telstra",
+      "position": "Associate Software Engineer",
+      "location": "India",
+      "start_date": "2021-07",
+      "end_date": "2022-10",
+      "description": "Chatbot Developer and Java Developer delivering automated chat flows and scalable Spring Boot APIs. Developed NLP models for sentiment analysis and topic modeling.",
+      "achievements": [
+        "Delivered chat flows with automated testing based on stakeholder requirements",
+        "Developed a Google widget that saves 50% time in development and testing",
+        "Developed an Alert system that can alert a user of an update in chat flows",
+        "Developed Proof-of-concept Natural Language Processing Models: (1) Sentiment analysis to assimilate whether work completed by a worker was positive or negative, (2) Topic modeling to determine where the problem exists when multiple users face similar issues",
+        "Developed scalable Spring Boot APIs after conversing with BAs and deployed them on Azure instances",
+        "Worked on Azure Functions PoC with senior developers and helped in JUnit5 migration"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Veermata Jijabai Technological Institute (VJTI)",
+      "degree": "Bachelor of Technology",
+      "field_of_study": "Computer Science",
+      "location": "Mumbai, India",
+      "start_date": "05/2017",
+      "end_date": "05/2021",
+      "gpa": null,
+      "honors": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Large Language Models (LLM)",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "GPT-4 & GPT-5",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Ollama",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Prompt Engineering",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "RAG (Retrieval Augmented Generation)",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "LangChain",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "LangGraph",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Agentic AI Workflows",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Multi-Agent Systems",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Agent-to-Agent (A2A) Communication",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Model Context Protocol (MCP)",
+      "category": "Generative AI",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "GenAI Solution Architecture",
+      "category": "Generative AI",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Machine Learning",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Deep Learning",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Natural Language Processing (NLP)",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Computer Vision",
+      "category": "AI & Machine Learning",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Sentiment Analysis",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Topic Modeling",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Neural Networks",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Ensemble Learning",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "XGBoost",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Gradient Boosting Machines (GBM)",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Random Forest",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Logistic Regression",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Support Vector Machines (SVM)",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "K-Means Clustering",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Decision Trees",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Recurrent Neural Networks (RNN/GRU/LSTM)",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Convolutional Neural Networks (CNN)",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Transfer Learning",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Feature Engineering",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Model Optimization",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Hyperparameter Tuning",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "MLOps & ML Pipelines",
+      "category": "AI & Machine Learning",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Python",
+      "category": "Programming",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Java",
+      "category": "Programming",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Programming",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Bash/Shell Scripting",
+      "category": "Programming",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "PyTorch",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "TensorFlow",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Scikit-learn",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Keras",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Hugging Face Transformers",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "spaCy",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "NLTK",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Pandas",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "NumPy",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Matplotlib",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Seaborn",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Plotly",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "FastAPI",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Flask",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Streamlit",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Spring Boot",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "RESTful API Design",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Microservices Architecture",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "React.js",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "HTML/CSS",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Bootstrap",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "pytest",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "JUnit",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Mockito",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Unit Testing",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Integration Testing",
+      "category": "Frameworks & Libraries",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "FAISS",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "ChromaDB",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Pinecone",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "MySQL",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "SQL",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "NoSQL",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Database Design",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Query Optimization",
+      "category": "Databases & Vector Stores",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Microsoft Azure",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure OpenAI Service",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Cognitive Services",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure AI Search",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Data Factory",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Stream Analytics",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Cosmos DB",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Virtual Machines",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure App Service",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Container Instances",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Kubernetes Service (AKS)",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure ML Studio",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure ML Compute",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure ML Model Registry",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure ML Pipelines",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Monitor",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Application Insights",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Log Analytics",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Alerts",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Resource Manager (ARM)",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure CLI",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Portal",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure Active Directory (Entra ID)",
+      "category": "Cloud & DevOps",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Azure Key Vault",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Azure Managed Identities",
+      "category": "Cloud & DevOps",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Azure RBAC",
+      "category": "Cloud & DevOps",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Azure Service Bus",
+      "category": "Cloud & DevOps",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Azure Functions",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Azure DevOps",
+      "category": "Cloud & DevOps",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Docker",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Kubernetes",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "CI/CD Pipelines",
+      "category": "Cloud & DevOps",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Infrastructure as Code (IaC)",
+      "category": "Cloud & DevOps",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Git & GitHub",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "GitLab",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "PowerBI",
+      "category": "Tools & Platforms",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Tableau",
+      "category": "Tools & Platforms",
+      "proficiency": "Beginner"
+    },
+    {
+      "name": "Jupyter Notebooks",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "VS Code",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "IntelliJ IDEA",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "PyCharm",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Postman",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Swagger/OpenAPI",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "JIRA",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Confluence",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Slack",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Microsoft Teams",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Miro",
+      "category": "Tools & Platforms",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Technical Leadership",
+      "category": "Soft Skills",
+      "proficiency": "Intermediate"
+    },
+    {
+      "name": "Team Mentoring & Coaching",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Cross-functional Collaboration",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Stakeholder Management",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Problem Solving & Critical Thinking",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Agile & Scrum Methodologies",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Code Review & Quality Assurance",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Technical Documentation",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Presentation & Communication",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Project Management",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Innovation & Research",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Business Analysis",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "System Design & Architecture",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Performance Optimization",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Debugging & Troubleshooting",
+      "category": "Soft Skills",
+      "proficiency": "Expert"
+    }
+  ],
+  "projects": [
+    {
+      "name": "AskTelstra GenAI RAG Chatbot",
+      "description": "Enhanced enterprise-scale GenAI chatbot handling 8000+ daily queries \n                using RAG architecture. Achieved 88% cost reduction through optimization and \n                architectural improvements.",
+      "technologies": [
+        "Python",
+        "LangChain",
+        "RAG",
+        "Azure",
+        "FAISS",
+        "GenAI"
+      ],
+      "url": "",
+      "start_date": "2024-05",
+      "end_date": null,
+      "highlights": [
+        "Reduced operational costs by 88% through architectural optimization",
+        "Handles 8000+ daily customer queries",
+        "Implemented advanced RAG pipeline with vector similarity search",
+        "Awarded Team Quarterly Award Work as One FY25 Q1"
+      ]
+    },
+    {
+      "name": "GenAI Call Drivers Automation",
+      "description": "Built automated system analyzing 25,000 calls daily using GPT-5-mini \n                reasoning models to extract key drivers and insights from customer interactions.",
+      "technologies": [
+        "Python",
+        "GenAI",
+        "GPT-5-mini",
+        "NLP",
+        "Azure"
+      ],
+      "url": "",
+      "start_date": "2025-07",
+      "end_date": null,
+      "highlights": [
+        "Analyzes 25,000 calls per day automatically",
+        "Implemented GPT-5-mini reasoning for driver extraction",
+        "Provides actionable insights for customer service improvement",
+        "Awarded Team Quarterly Award Work as One FY24 Q4"
+      ]
+    },
+    {
+      "name": "NATAMA Automation Platform",
+      "description": "Developed automation platform for network traffic analysis saving \n                3 million AUD annually through automated decision-making and process optimization.",
+      "technologies": [
+        "Python",
+        "Machine Learning",
+        "Azure",
+        "MLOps"
+      ],
+      "url": "",
+      "start_date": "2025-07",
+      "end_date": null,
+      "highlights": [
+        "Saved 3 million AUD annually in operational costs",
+        "Automated complex network traffic analysis workflows",
+        "Implemented ML-driven decision support system",
+        "Deployed at enterprise scale across Telstra operations"
+      ]
+    },
+    {
+      "name": "NLP Mailboxes Solution",
+      "description": "Created intelligent NLP-based system for automated email classification \n                and routing. Improved API latency by 500% through optimization.",
+      "technologies": [
+        "Python",
+        "NLP",
+        "Spacy",
+        "Azure ML",
+        "FastAPI"
+      ],
+      "url": "",
+      "start_date": "2022-10",
+      "end_date": "2024-04",
+      "highlights": [
+        "500% improvement in API response latency",
+        "Automated classification of thousands of emails daily",
+        "Integrated with Azure ML for model deployment",
+        "Reduced manual email routing effort significantly"
+      ]
+    },
+    {
+      "name": "ENPS Sentiment Analyzer",
+      "description": "Built sentiment analysis tool for Employee Net Promoter Score (ENPS) \n                surveys providing actionable insights for HR and management.",
+      "technologies": [
+        "Python",
+        "NLP",
+        "Azure",
+        "PowerBI"
+      ],
+      "url": "",
+      "start_date": "2023-01",
+      "end_date": "2023-06",
+      "highlights": [
+        "Automated sentiment analysis of employee feedback",
+        "Generated insights for HR decision-making",
+        "Integrated with PowerBI for visualization",
+        "Improved employee engagement tracking"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "From Engineer to Technical Manager",
+      "issuer": "Udemy",
+      "issue_date": "2025-04",
+      "credential_id": "UC-8a013bef-2691-4e8a-9694-f3014f00e83a",
+      "credential_url": null,
+      "skills": [
+        "Leadership",
+        "Team Leadership"
+      ]
+    },
+    {
+      "name": "LangChain- Develop LLM powered applications with LangChain",
+      "issuer": "Udemy",
+      "issue_date": "2025-03",
+      "credential_id": "UC-ea0a760e-1498-411d-92ef-58d9b574bc78",
+      "credential_url": null,
+      "skills": [
+        "LangChain",
+        "Generative AI"
+      ]
+    },
+    {
+      "name": "Agile Software Development",
+      "issuer": "LinkedIn",
+      "issue_date": "2021-07",
+      "credential_id": null,
+      "credential_url": null,
+      "skills": [
+        "Computer Engineering"
+      ]
+    },
+    {
+      "name": "Introduction to Quantum Computing Certificate of Completion",
+      "issuer": "The Coding School",
+      "issue_date": "2021-05",
+      "credential_id": null,
+      "credential_url": null,
+      "skills": [
+        "Software Development"
+      ]
+    },
+    {
+      "name": "Deep Learning Specialization",
+      "issuer": "Coursera",
+      "issue_date": "2020-06",
+      "credential_id": "LPM2R2FKSZMX",
+      "credential_url": null,
+      "skills": [
+        "Software Development"
+      ]
+    },
+    {
+      "name": "Advanced Styling with Responsive Design",
+      "issuer": "Coursera",
+      "issue_date": "2020-05",
+      "credential_id": "DY44QLUXMAZH",
+      "credential_url": null,
+      "skills": []
+    },
+    {
+      "name": "Business English: Networking",
+      "issuer": "Coursera",
+      "issue_date": "2020-05",
+      "credential_id": "G3L2N25YJPBS",
+      "credential_url": null,
+      "skills": [
+        "Software Development"
+      ]
+    },
+    {
+      "name": "Introduction to Structured Query Language (SQL)",
+      "issuer": "Coursera",
+      "issue_date": "2020-05",
+      "credential_id": "XPVPAGCKZUW9",
+      "credential_url": null,
+      "skills": [
+        "Computer Engineering",
+        "Software Development"
+      ]
+    },
+    {
+      "name": "Introduction to Data Science in Python",
+      "issuer": "Coursera",
+      "issue_date": "2020-04",
+      "credential_id": "Q5X2EV2CAWK4",
+      "credential_url": null,
+      "skills": [
+        "Software Development"
+      ]
+    },
+    {
+      "name": "Nvidia deep learning course completion",
+      "issuer": "NVIDIA",
+      "issue_date": "2019-02",
+      "credential_id": null,
+      "credential_url": null,
+      "skills": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "Data-engineering India Achiever of the Month",
+      "issuer": "Telstra",
+      "date": "2025-01",
+      "description": "Recognized for outstanding contributions to data engineering and AI/ML initiatives"
+    },
+    {
+      "title": "Team Quarterly Award - Work as One FY25 Q1",
+      "issuer": "Telstra",
+      "date": "2024-10",
+      "description": "Team recognition for exceptional collaboration and delivery"
+    },
+    {
+      "title": "Team Quarterly Award - Work as One FY24 Q4",
+      "issuer": "Telstra",
+      "date": "2024-06",
+      "description": "Team recognition for outstanding performance and innovation"
+    }
+  ],
+  "languages": [
+    "English (Native)",
+    "Hindi (Native)"
+  ],
+  "interests": [
+    {
+      "name": "Motorcycle Touring",
+      "description": "Passionate about long-distance motorcycle touring with full riding gear, exploring scenic routes and new destinations"
+    },
+    {
+      "name": "Travel & Adventure",
+      "description": "Adventure enthusiast who loves exploring new places, cultures, and challenging experiences"
+    },
+    {
+      "name": "Photography",
+      "description": "Capturing beautiful moments through lens, specializing in nature and landscape photography"
+    },
+    {
+      "name": "Nature & Hiking",
+      "description": "Avid hiker and nature lover, finding peace in the great outdoors and mountain trails"
+    },
+    {
+      "name": "Fitness & Gym",
+      "description": "Dedicated to maintaining physical fitness through regular gym workouts and training"
+    },
+    {
+      "name": "Cat Parent",
+      "description": "Proud cat dad who enjoys spending quality time with feline companion"
+    }
+  ]
+}

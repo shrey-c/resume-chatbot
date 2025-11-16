@@ -298,11 +298,35 @@
 				window.location.hostname.endsWith('github.io') ||
 				window.location.protocol === 'file:'
 			);
+			const STATIC_RESUME_DATA_URL = 'static/resume_data.json';
+			const BASIC_FALLBACK_DATA = {
+				summary: 'Resume details are temporarily unavailable. Please try again later.',
+				experience: [],
+				education: [],
+				skills: [],
+				projects: [],
+				certifications: [],
+				awards: []
+			};
+
+			async function fetchStaticResumeData() {
+				try {
+					const response = await fetch(STATIC_RESUME_DATA_URL, { cache: 'no-store' });
+					if (!response.ok) {
+						throw new Error(`Static resume JSON missing: ${response.status}`);
+					}
+					return await response.json();
+				} catch (error) {
+					console.warn('Falling back to minimal resume data:', error.message);
+					return BASIC_FALLBACK_DATA;
+				}
+			}
 
 			// Load Resume Data
 			async function loadResumeData() {
 				if (runningOnStaticSite) {
-					loadFallbackData();
+					const staticData = await fetchStaticResumeData();
+					populateResumeData(staticData);
 					return;
 				}
 				try {
@@ -316,8 +340,9 @@
 					populateResumeData(data);
 					
 				} catch (error) {
-					console.log('API not available, using fallback data:', error.message);
-					loadFallbackData();
+					console.log('API not available, using static data:', error.message);
+					const staticData = await fetchStaticResumeData();
+					populateResumeData(staticData);
 				}
 			}
 			
@@ -457,7 +482,7 @@
 					
 					// Update Awards
 					const awardsList = document.getElementById('awards-list');
-					awardsList.innerHTML = data.awards.map(award => `
+					awardsList.innerHTML = (data.awards || []).map(award => `
 						<article class="award-card">
 							<h4>
 								🏆 ${award.title}
@@ -474,173 +499,6 @@
 					setupAwardsReadMore();
 				}
 				
-				function loadFallbackData() {
-					// Fallback data when Python backend is not running  
-					const fallbackData = {
-						summary: "AI/ML Engineer specializing in full-stack development, data science and AI/ML. Proven ability to build end-to-end machine learning solutions and drive business impact—such as saving 3M AUD annually through automation and enhancing customer experience via AskTelstra GenAI chatbot. Expert in Python, AI, Java, and cloud technologies, with a track record of innovation, leadership, and scalable software delivery.",
-						experience: [
-							{
-								position: "ML Engineer",
-								company: "Telstra (TLSA)",
-								location: "Pune, Maharashtra, India",
-								start_date: "2025-07",
-								end_date: null,
-								description: "Leading AI/ML initiatives including GenAI call drivers automation, AskTelstra chatbot enhancements, and advanced analytics solutions.",
-								achievements: [
-									"Built GenAI Call Drivers automation analyzing 25K calls/day, delivering insights to board of directors",
-									"Enhanced AskTelstra GenAI RAG chatbot, reducing build costs by 88% and scaling to 15K+ frontline agents",
-									"Automated NATAMA Fault Data Process saving 3M AUD annually",
-									"Developed ensemble ML model (XGBoost, GRU, Logistic Regression) for PII identification"
-								]
-							},
-							{
-								position: "Machine Learning Engineer",
-								company: "Telstra",
-								location: "Pune, Maharashtra, India",
-								start_date: "2024-05",
-								end_date: "2025-06",
-								description: "Enhanced AskTelstra RAG-based GenAI chatbot architecture, security, and performance.",
-								achievements: [
-									"Introduced unit testing with pytest, backend authentication, and SSO using JWT tokens",
-									"Designed comprehensive logging framework with unique identifiers",
-									"Streamlined weekly releases deploying to 1,500 agents with scaling to 5,000",
-									"Awarded Team Awards for FY24 Q4 and FY25 Q1"
-								]
-							}
-						],
-						skills: [
-							// Generative AI
-							{ category: "Generative AI", name: "Large Language Models (LLM)" },
-							{ category: "Generative AI", name: "GPT-4 & GPT-5" },
-							{ category: "Generative AI", name: "Ollama" },
-							{ category: "Generative AI", name: "Prompt Engineering" },
-							{ category: "Generative AI", name: "RAG (Retrieval Augmented Generation)" },
-							{ category: "Generative AI", name: "LangChain" },
-							{ category: "Generative AI", name: "LangGraph" },
-							{ category: "Generative AI", name: "Agentic AI Workflows" },
-							{ category: "Generative AI", name: "Multi-Agent Systems" },
-							{ category: "Generative AI", name: "Model Context Protocol (MCP)" },
-							{ category: "Generative AI", name: "GenAI Solution Architecture" },
-							
-							// AI & Machine Learning
-							{ category: "AI & Machine Learning", name: "Machine Learning" },
-							{ category: "AI & Machine Learning", name: "Deep Learning" },
-							{ category: "AI & Machine Learning", name: "Natural Language Processing (NLP)" },
-							{ category: "AI & Machine Learning", name: "Computer Vision" },
-							{ category: "AI & Machine Learning", name: "Sentiment Analysis" },
-							{ category: "AI & Machine Learning", name: "Topic Modeling" },
-							{ category: "AI & Machine Learning", name: "Neural Networks" },
-							{ category: "AI & Machine Learning", name: "Ensemble Learning" },
-							{ category: "AI & Machine Learning", name: "XGBoost" },
-							{ category: "AI & Machine Learning", name: "Random Forest" },
-							{ category: "AI & Machine Learning", name: "Logistic Regression" },
-							{ category: "AI & Machine Learning", name: "RNN/GRU/LSTM" },
-							{ category: "AI & Machine Learning", name: "CNN" },
-							{ category: "AI & Machine Learning", name: "Transfer Learning" },
-							{ category: "AI & Machine Learning", name: "Feature Engineering" },
-							{ category: "AI & Machine Learning", name: "Model Optimization" },
-							{ category: "AI & Machine Learning", name: "MLOps & ML Pipelines" },
-							
-							// Programming Languages
-							{ category: "Programming Languages", name: "Python" },
-							{ category: "Programming Languages", name: "Java" },
-							{ category: "Programming Languages", name: "JavaScript" },
-							{ category: "Programming Languages", name: "Bash/Shell Scripting" },
-							
-							// Frameworks & Libraries
-							{ category: "Frameworks & Libraries", name: "PyTorch" },
-							{ category: "Frameworks & Libraries", name: "TensorFlow" },
-							{ category: "Frameworks & Libraries", name: "Scikit-learn" },
-							{ category: "Frameworks & Libraries", name: "Hugging Face Transformers" },
-							{ category: "Frameworks & Libraries", name: "spaCy" },
-							{ category: "Frameworks & Libraries", name: "Pandas" },
-							{ category: "Frameworks & Libraries", name: "NumPy" },
-							{ category: "Frameworks & Libraries", name: "FastAPI" },
-							{ category: "Frameworks & Libraries", name: "Flask" },
-							{ category: "Frameworks & Libraries", name: "Streamlit" },
-							{ category: "Frameworks & Libraries", name: "Spring Boot" },
-							{ category: "Frameworks & Libraries", name: "React.js" },
-							{ category: "Frameworks & Libraries", name: "pytest" },
-							{ category: "Frameworks & Libraries", name: "JUnit" },
-							
-							// Databases
-							{ category: "Databases & Vector Stores", name: "FAISS" },
-							{ category: "Databases & Vector Stores", name: "ChromaDB" },
-							{ category: "Databases & Vector Stores", name: "Pinecone" },
-							{ category: "Databases & Vector Stores", name: "PostgreSQL" },
-							{ category: "Databases & Vector Stores", name: "MySQL" },
-							{ category: "Databases & Vector Stores", name: "MongoDB" },
-							{ category: "Databases & Vector Stores", name: "SQL" },
-							
-							// Cloud & DevOps
-							{ category: "Cloud & DevOps", name: "Microsoft Azure" },
-							{ category: "Cloud & DevOps", name: "Azure OpenAI Service" },
-							{ category: "Cloud & DevOps", name: "Azure Cognitive Services" },
-							{ category: "Cloud & DevOps", name: "Azure Data Factory" },
-							{ category: "Cloud & DevOps", name: "Azure ML Studio" },
-							{ category: "Cloud & DevOps", name: "Azure App Service" },
-							{ category: "Cloud & DevOps", name: "Azure Functions" },
-							{ category: "Cloud & DevOps", name: "Docker" },
-							{ category: "Cloud & DevOps", name: "Kubernetes" },
-							{ category: "Cloud & DevOps", name: "Git & GitHub" },
-							{ category: "Cloud & DevOps", name: "CI/CD Pipelines" },
-							
-							// Tools
-							{ category: "Tools & Platforms", name: "Jupyter Notebooks" },
-							{ category: "Tools & Platforms", name: "VS Code" },
-							{ category: "Tools & Platforms", name: "PowerBI" },
-							{ category: "Tools & Platforms", name: "Postman" },
-							{ category: "Tools & Platforms", name: "Swagger" }
-						],
-						projects: [
-							{
-								name: "Resume Chatbot",
-								description: "GenAI-powered chatbot for interactive resume exploration",
-								technologies: ["Python", "FastAPI", "LangChain", "OpenAI", "React"],
-								highlights: [
-									"Built using LangGraph for conversational AI",
-									"Deployed on GitHub Pages with automated CI/CD"
-								]
-							}
-						],
-						education: [
-							{
-								degree: "Bachelor of Engineering",
-								field_of_study: "Computer Science",
-								institution: "University",
-								location: "India",
-								start_date: "2017",
-								end_date: "2021"
-							}
-						],
-						certifications: [
-							{
-								name: "Azure AI Engineer Associate",
-								issuer: "Microsoft",
-								issue_date: "2024",
-								credential_id: "CERT-12345",
-								skills: ["Azure AI", "Machine Learning", "NLP"]
-							}
-						],
-						awards: [
-							{
-								title: "Team Award FY25 Q1",
-								issuer: "Telstra",
-								date: "2025",
-								description: "Outstanding contribution to AskTelstra GenAI chatbot"
-							},
-							{
-								title: "Data Engineering India Achiever of the Month",
-								issuer: "Telstra",
-								date: "January 2025",
-								description: "Recognition for exceptional performance"
-							}
-						]
-					};
-					
-					populateResumeData(fallbackData);
-				}
-
 				function setupExperienceReadMore() {
 					const items = document.querySelectorAll('#experience-list .experience-item');
 					const getBody = (item) => item.querySelector('.experience-body');

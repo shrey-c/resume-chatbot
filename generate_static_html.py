@@ -5,12 +5,22 @@ This creates an SEO-friendly and parser-friendly version of the resume.
 
 from app.services.resume_data import get_resume_data
 from pathlib import Path
+import json
 
 
 def generate_static_html():
     """Generate static HTML with all resume data pre-rendered."""
     
     resume = get_resume_data()
+
+    # Export resume data to JSON for static site parity
+    resume_json = resume.model_dump(mode="json")
+    json_path = Path("static/resume_data.json")
+    json_path.write_text(
+        json.dumps(resume_json, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
+    print(f"✅ Generated static resume JSON: {json_path}")
     
     # Generate skills by category
     skills_html = ""
