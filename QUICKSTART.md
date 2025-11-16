@@ -119,7 +119,6 @@ Edit `app/services/agents.py`:
 ### Customize Website Design
 - Edit `static/index.html` for structure
 - Photo with subtle filter at `static/images/shrey.jpg`
-- Recruiter-focused page at `static/recruiters.html`
 
 ## 🛠️ Troubleshooting
 

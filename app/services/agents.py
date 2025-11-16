@@ -12,7 +12,6 @@ import operator
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
 from app.core.config import settings
-from app.services.resume_data import get_resume_context
 from app.services.html_parser import get_html_context
 import httpx
 import re
@@ -25,7 +24,7 @@ class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
     user_query: str
     html_context: str  # PRIMARY source from HTML
-    resume_context: str  # FALLBACK source from structured data
+    resume_context: str  # Mirror of HTML context for backwards compatibility
     research_findings: str
     draft_response: str
     final_response: str
@@ -52,13 +51,24 @@ class ResearchAgent:
     async def analyze(self, state: AgentState) -> AgentState:
         """Analyze user query and extract relevant resume information."""
         
-        # PRIMARY: Use HTML context, FALLBACK: Use structured resume context
+        # PRIMARY: Use HTML context sourced from the live website
         primary_context = state.get('html_context', '')
         fallback_context = state.get('resume_context', '')
         
-        # Use HTML context if available, otherwise fallback to resume context
+        # Use HTML context if available, otherwise fallback to resume context (which mirrors HTML)
         context_source = "HTML website content" if primary_context else "structured resume data"
         active_context = primary_context if primary_context else fallback_context
+        
+        if not active_context.strip():
+            notice = (
+                "No resume content is currently available from the website, so I cannot "
+                "answer this question right now."
+            )
+            state["research_findings"] = notice
+            state["messages"] = state.get("messages", []) + [
+                AIMessage(content=notice)
+            ]
+            return state
         
         system_prompt = f"""You are a Research Agent analyzing questions about Shreyansh Chheda's resume.
 
@@ -364,15 +374,21 @@ class AgenticChatbot:
         # Get HTML context (PRIMARY)
         html_context = get_html_context()
         
-        # Get resume context (FALLBACK)
-        resume_context = get_resume_context()
+        if not html_context.strip():
+            return (
+                "I can't access my on-site resume content right now. Please refresh the page "
+                "or try again in a moment."
+            )
+        
+        # Mirror HTML context into resume_context for backwards compatibility
+        resume_context = html_context
         
         # Initialize state
         initial_state: AgentState = {
             "messages": [HumanMessage(content=user_message)],
             "user_query": user_message,
             "html_context": html_context,  # PRIMARY source
-            "resume_context": resume_context,  # FALLBACK source
+            "resume_context": resume_context,  # Mirrors HTML source
             "research_findings": "",
             "draft_response": "",
             "final_response": "",

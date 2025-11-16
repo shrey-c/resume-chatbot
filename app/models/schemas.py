@@ -98,9 +98,7 @@ class Education(BaseModel):
                 "field_of_study": "Computer Science",
                 "location": "Boston, MA",
                 "start_date": "2016",
-                "end_date": "2020",
-                "gpa": "3.8/4.0",
-                "honors": ["Dean's List", "Summa Cum Laude"]
+                "end_date": "2020"
             }
         }
     )

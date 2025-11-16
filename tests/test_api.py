@@ -175,7 +175,7 @@ class TestChatEndpoint:
         """Test chat with invalid JSON."""
         response = client.post(
             "/api/chat",
-            data="invalid json",
+            content=b"invalid json",
             headers={"Content-Type": "application/json"}
         )
         

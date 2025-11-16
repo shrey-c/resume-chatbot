@@ -9,7 +9,7 @@ import re
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 import pdfplumber
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from app.models.schemas import (
     Resume, Experience, Education, Skill, Project,
     ContactInfo, SkillCategory
@@ -58,9 +58,9 @@ class PDFResumeParser:
                     if page_text:
                         text_parts.append(page_text)
         except Exception as e:
-            print(f"pdfplumber failed: {e}, trying PyPDF2...")
+            print(f"pdfplumber failed: {e}, trying pypdf...")
             
-            # Fallback to PyPDF2
+            # Fallback to pypdf
             try:
                 reader = PdfReader(pdf_path)
                 for page in reader.pages:
